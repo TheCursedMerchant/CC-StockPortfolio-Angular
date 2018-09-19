@@ -10,6 +10,9 @@ import { UserSettingsComponent } from './components/user-settings/user-settings.
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { HomeComponent } from './components/home/home.component';
+import { TestServiceService } from './services/test-service.service';
+import { HttpClientModule } from '../../node_modules/@angular/common/http';
+import { TestComponent } from './components/test/test.component';
 
 @NgModule({
   declarations: [
@@ -20,13 +23,15 @@ import { HomeComponent } from './components/home/home.component';
     UserSettingsComponent,
     LoginComponent,
     LogoutComponent,
-    HomeComponent
+    HomeComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [TestServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
