@@ -25,4 +25,8 @@ export class TestServiceService {
   getQuotes(url: string):Observable<any[]>{    //this one just has url param
     return this.http.get<any[]>(url);          //cuz we will have to do multiple get requests
   }
+  
+  getQuoteCirey(url: string):Promise<any>{    //this one just has url param
+    return this.http.get<any>(url).toPromise();          //cuz we will have to do multiple get requests
+  }
 }
