@@ -67,7 +67,8 @@ export class TestComponent implements OnInit {
       //this quote except replace "aapl"
       let url = "https://api.iextrading.com/1.0/stock/" + this.symbols[i] + "/quote?filter=symbol,open,companyName";
       this.myService.getQuotes(url)
-      .subscribe((apiQuote =>{ this.quotes = apiQuote;               //"quotes" is array of quotes
+      .subscribe((apiQuote =>{ 
+          this.quotes[i] = new QuoteClass();               //"quotes" is array of quotes
           this.quotes[i - start] = new QuoteClass();
           this.quotes[i - start]["symbol"] = apiQuote["symbol"];
           this.quotes[i - start]["open"] = apiQuote["open"];
@@ -88,3 +89,8 @@ export class TestComponent implements OnInit {
     }
   }
 }
+
+
+
+
+// https://www.concretepage.com/questions/544
