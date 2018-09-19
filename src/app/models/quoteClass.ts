@@ -1,5 +1,16 @@
 export class QuoteClass {
-    symbol ? : string;
-    companyName ? : string;
-    open ? : number;
+    symbol ? : undefined;
+    companyName ? : undefined;
+    open ? : undefined;
+
+    constructor(symbol, companyName, open){
+        this.symbol = symbol;
+        this.companyName = companyName;
+        this.open = open;
+    }
+    // QuoteClass(){}
+    // QuoteClass(symbol, companyName, open){ 
+    //     this.symbol = symbol;
+
+    // }
 }
