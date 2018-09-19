@@ -4,12 +4,29 @@
   <label>Let's Go!</label>
   <button name = "sumbit" (click) = "getStocks()">Submit</button>
   <button name = "getSymbols" (click) = "getSymbols()">Get Symbols</button>
-  <button name = "getquotes" (click) = "getQuotes(1, 4)">Get Quotes(wat we wanna do for directory)
+  <button name = "getquotes" (click) = "getQuotes(0, 3)">Get Quotes(wat we wanna do for directory)
   </button>
 </div>
  <h4>{{quote.symbol}}, {{quote.companyName}}, {{quote.open}}</h4>
+
+<div>
+  <table>
+    <tr>
+      <th>Symbol</th>
+      <th>Company Name</th>
+      <th>Opening</th>
+    </tr>
+    <tr *ngFor = "let q of quotes">
+      <td><a href="#">{{q.symbol}}</a></td>
+      <td>{{q.companyName}}</td>
+      <td>{{q.open}}</td>
+    </tr>
+  </table>
+</div>
+
 <div>
   <!-- this will pring out list of the symbols -->
   <p *ngFor = "let symbol of symbols">{{symbol}}</p>
 </div>
+
 

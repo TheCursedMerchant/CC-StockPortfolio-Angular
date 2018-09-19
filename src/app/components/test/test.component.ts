@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TestServiceService } from '../../services/test-service.service';
 import { ActivatedRoute } from '../../../../node_modules/@angular/router';
+import { QuoteClass } from '../../models/quoteClass';
 
 @Component({
   selector: 'app-test',
@@ -21,6 +22,7 @@ export class TestComponent implements OnInit {
     open: undefined
   }
 
+  quotes : QuoteClass[] = [];//[{symbol: 'a', companyName: 'b', open: 234}];
   symbols : string[] = [];    //omg b4 didnt work...but stackoverflow said we didnt initialize our
                 //array ;D   so needed to do = []; empty array
 
@@ -51,10 +53,14 @@ export class TestComponent implements OnInit {
     {
       // https://api.iextrading.com/1.0/stock/aapl/quote?filter=symbol,open,companyName
       //this quote except replace "aapl"
-      let url = "https://api.iextrading.com/1.0/stock/" + this.symbols[i] + "/quote";
+      let url = "https://api.iextrading.com/1.0/stock/" + this.symbols[i] + "/quote?filter=symbol,open,companyName";
       this.myService.getQuotes(url)
-      .subscribe((quotes =>{                //"quotes" is array of quotes
-          console.log(quotes);
+      .subscribe((apiQuotes =>{                //"quotes" is array of quotes
+          console.log(i - start);
+          this.quotes[i - start] = new QuoteClass();
+          this.quotes[i - start]["symbol"] = apiQuotes["symbol"];
+          this.quotes[i - start]["open"] = apiQuotes["open"];
+          this.quotes[i - start]["companyName"] = apiQuotes["companyName"];
       }));
     }
   }

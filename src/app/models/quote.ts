@@ -1,5 +1,5 @@
 interface Quote {
-    symbol: string,
-    companyName: string,
-    open: number
+    symbol : string,
+    companyName : string,
+    open : number
   }
