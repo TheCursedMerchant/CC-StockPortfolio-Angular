@@ -21,6 +21,8 @@ export class TestComponent implements OnInit {
     open: undefined
   }
 
+  symbols : string[] = [];    //omg b4 didnt work...but stackoverflow said we didnt initialize our
+                //array ;D   so needed to do = []; empty array
 
 
   getStocks(){
@@ -32,4 +34,22 @@ export class TestComponent implements OnInit {
   }));
   }
 
+  getSymbols(){
+    this.myService.getSymbols()
+    .subscribe((symbols =>{ 
+      for(let i in symbols){
+        this.symbols.push(symbols[i]["symbol"]); //only did push to try to make work..i think can do
+                                                //regular way to set tho
+        // console.log(symbols[i]["symbol"]);
+      }
+    }));
+  }
+
+  getQuotes(){
+    //call this after getSymbols has populated this.symbols[]
+    for(let i in this.symbols) //for every symbol url
+    {
+
+    }
+  }
 }
