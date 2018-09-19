@@ -1,7 +1,7 @@
 export class QuoteClass {
-    symbol ? : undefined;
-    companyName ? : undefined;
-    open ? : undefined;
+    symbol ? : string;
+    companyName ? : string;
+    open ? : number;
 
     // https://visualstudiomagazine.com/articles/2016/01/01/exploiting-typescript-arrays.aspx
     constructor(symbol, companyName, open){
