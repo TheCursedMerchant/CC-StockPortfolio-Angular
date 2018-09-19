@@ -33,5 +33,6 @@ import { TestComponent } from './components/test/test.component';
   ],
   providers: [TestServiceService],
   bootstrap: [AppComponent]
+   //adding bootstrap: npm install bootstrap. in angular.json, put location under styles. restart to do ng serve
 })
 export class AppModule { }
