@@ -71,6 +71,7 @@ export class TestComponent implements OnInit {
       let url = "https://api.iextrading.com/1.0/stock/" + this.symbols[i] + "/quote?filter=symbol,open,companyName";
       this.myService.getQuotes(url)
       .subscribe((apiQuote =>{ 
+        // https://visualstudiomagazine.com/articles/2016/01/01/exploiting-typescript-arrays.aspx
           this.quotes[i - start] = new QuoteClass(
             apiQuote["symbol"], apiQuote["open"], apiQuote["companyName"]);               //"quotes" is array of quotes
           // this.quotes[i - start]["symbol"] = apiQuote["symbol"];
