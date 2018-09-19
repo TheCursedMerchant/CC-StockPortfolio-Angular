@@ -23,8 +23,8 @@ export class TestComponent implements OnInit {
     open: undefined
   }
 
-  quotes : QuoteClass[] = [];//[{symbol: 'a', companyName: 'b', open: 234}];
-  // quotes : {symbol: undefined, companyName: undefined, open: undefined}[] = [];
+  // quotes : QuoteClass[] = [];//[{symbol: 'a', companyName: 'b', open: 234}];
+  quotes : {symbol: undefined, companyName: undefined, open: undefined}[] = [];
   
   symbols : string[] = [];    //omg b4 didnt work...but stackoverflow said we didnt initialize our
                 //array ;D   so needed to do = []; empty array
@@ -52,8 +52,8 @@ export class TestComponent implements OnInit {
   }
 
   getNextQuotes(){
-    this.getQuotes(this.startIndex, this.startIndex + 10);
-    // this.getCireyQuotes(this.startIndex, this.startIndex + 10);
+    // this.getQuotes(this.startIndex, this.startIndex + 10);
+    this.getCireyQuotes(this.startIndex, this.startIndex + 10);
     this.startIndex += 10;
   }
 
@@ -72,8 +72,8 @@ export class TestComponent implements OnInit {
       this.myService.getQuotes(url)
       .subscribe((apiQuote =>{ 
         // https://visualstudiomagazine.com/articles/2016/01/01/exploiting-typescript-arrays.aspx
-          this.quotes[i - start] = new QuoteClass(
-            apiQuote["symbol"], apiQuote["open"], apiQuote["companyName"]);               //"quotes" is array of quotes
+          // this.quotes[i - start] = new QuoteClass(
+            // apiQuote["symbol"], apiQuote["open"], apiQuote["companyName"]);               //"quotes" is array of quotes
           // this.quotes[i - start]["symbol"] = apiQuote["symbol"];
           // this.quotes[i - start]["open"] = apiQuote["open"];
           // this.quotes[i - start]["companyName"] = apiQuote["companyName"];
