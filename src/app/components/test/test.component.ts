@@ -50,7 +50,8 @@ export class TestComponent implements OnInit {
   }
 
   getNextQuotes(){
-    this.getQuotes(this.startIndex, this.startIndex + 10);
+    // this.getQuotes(this.startIndex, this.startIndex + 10);
+    this.getCireyQuotes(this.startIndex, this.startIndex + 10);
     this.startIndex += 10;
   }
 
@@ -83,14 +84,11 @@ export class TestComponent implements OnInit {
       console.log(i);
       let url = "https://api.iextrading.com/1.0/stock/" + this.symbols[i] + "/quote?filter=symbol,open,companyName";
       this.myService.getQuoteCirey(url)
-      .then((currentQuote)=>{this.quotes[i] = currentQuote;
+      .then((currentQuote)=>{this.quotes[i - start] = currentQuote;
         this.quotes[i - start].symbol = currentQuote["symbol"]; 
       });
     }
   }
 }
-
-
-
 
 // https://www.concretepage.com/questions/544
