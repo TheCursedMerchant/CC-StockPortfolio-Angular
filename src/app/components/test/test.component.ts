@@ -49,9 +49,6 @@ export class TestComponent implements OnInit {
     }));
   }
 
-<<<<<<< HEAD
-  /*getQuotes(start:number, end:number){
-=======
   getNextQuotes(){
     this.getQuotes(this.startIndex, this.startIndex + 10);
     this.startIndex += 10;
@@ -63,7 +60,6 @@ export class TestComponent implements OnInit {
   }
 
   getQuotes(start:number, end:number){
->>>>>>> 01221da013a60f56c84ac6a54a0cf62bb03af150
     //call this after getSymbols has populated this.symbols[]
     for(let i= start; i < end; i++) //for every symbol url
     {
@@ -71,19 +67,14 @@ export class TestComponent implements OnInit {
       //this quote except replace "aapl"
       let url = "https://api.iextrading.com/1.0/stock/" + this.symbols[i] + "/quote?filter=symbol,open,companyName";
       this.myService.getQuotes(url)
-<<<<<<< HEAD
-      .subscribe((apiQuotes =>{ this.quotes = apiQuotes;               //"quotes" is array of quotes
-=======
-      .subscribe((apiQuote =>{                //"quotes" is array of quotes
-          console.log(i - start);
->>>>>>> 01221da013a60f56c84ac6a54a0cf62bb03af150
+      .subscribe((apiQuote =>{ this.quotes = apiQuote;               //"quotes" is array of quotes
           this.quotes[i - start] = new QuoteClass();
           this.quotes[i - start]["symbol"] = apiQuote["symbol"];
           this.quotes[i - start]["open"] = apiQuote["open"];
           this.quotes[i - start]["companyName"] = apiQuote["companyName"];
       }));
     }
-  }*/
+  }
 
   getCireyQuotes(start:number, end:number){
     for(let i = start; i < end; i++)
