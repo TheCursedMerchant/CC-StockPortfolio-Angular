@@ -23,7 +23,9 @@ export class TestComponent implements OnInit {
     open: undefined
   }
 
-  quotes : QuoteClass[] = [];//[{symbol: 'a', companyName: 'b', open: 234}];
+  // quotes : QuoteClass[] = [];//[{symbol: 'a', companyName: 'b', open: 234}];
+  quotes : {symbol: undefined, companyName: undefined, open: undefined}[] = [];
+  
   symbols : string[] = [];    //omg b4 didnt work...but stackoverflow said we didnt initialize our
                 //array ;D   so needed to do = []; empty array
   cireyQuotes: Quote[];
@@ -69,8 +71,7 @@ export class TestComponent implements OnInit {
       let url = "https://api.iextrading.com/1.0/stock/" + this.symbols[i] + "/quote?filter=symbol,open,companyName";
       this.myService.getQuotes(url)
       .subscribe((apiQuote =>{ 
-          this.quotes[i - start] = new QuoteClass();               //"quotes" is array of quotes
-          this.quotes[i - start] = new QuoteClass();
+          // this.quotes[i - start] = new QuoteClass();               //"quotes" is array of quotes
           this.quotes[i - start]["symbol"] = apiQuote["symbol"];
           this.quotes[i - start]["open"] = apiQuote["open"];
           this.quotes[i - start]["companyName"] = apiQuote["companyName"];
@@ -85,7 +86,7 @@ export class TestComponent implements OnInit {
       let url = "https://api.iextrading.com/1.0/stock/" + this.symbols[i] + "/quote?filter=symbol,open,companyName";
       this.myService.getQuoteCirey(url)
       .then((currentQuote)=>{this.quotes[i - start] = currentQuote;
-        this.quotes[i - start].symbol = currentQuote["symbol"]; 
+        // this.quotes[i - start].symbol = currentQuote["symbol"]; ln above is good
       });
     }
   }
