@@ -35,8 +35,8 @@ export class TestComponent implements OnInit {
   }
 
   getSymbols(){
-    this.myService.getSymbols()
-    .subscribe((symbols =>{ 
+    this.myService.getSymbols().subscribe
+    ((symbols =>{ 
       for(let i in symbols){
         this.symbols.push(symbols[i]["symbol"]); //only did push to try to make work..i think can do
                                                 //regular way to set tho
@@ -45,11 +45,17 @@ export class TestComponent implements OnInit {
     }));
   }
 
-  getQuotes(){
+  getQuotes(start:number, end:number){
     //call this after getSymbols has populated this.symbols[]
-    for(let i in this.symbols) //for every symbol url
+    for(let i= start; i < end; i++) //for every symbol url
     {
-
+      // https://api.iextrading.com/1.0/stock/aapl/quote?filter=symbol,open,companyName
+      //this quote except replace "aapl"
+      let url = "https://api.iextrading.com/1.0/stock/" + this.symbols[i] + "/quote";
+      this.myService.getQuotes(url)
+      .subscribe((quotes =>{                //"quotes" is array of quotes
+          console.log(quotes);
+      }));
     }
   }
 }
