@@ -13,6 +13,7 @@ import { HomeComponent } from './components/home/home.component';
 import { TestServiceService } from './services/test-service.service';
 import { HttpClientModule } from '../../node_modules/@angular/common/http';
 import { TestComponent } from './components/test/test.component';
+import { NavComponent } from './components/nav/nav.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { TestComponent } from './components/test/test.component';
     LoginComponent,
     LogoutComponent,
     HomeComponent,
-    TestComponent
+    TestComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
