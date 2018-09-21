@@ -12,22 +12,24 @@
 <!-- </div>
  <h4>{{stock.symb}}, {{stock.companyN}}, {{stock.opening}}</h4> -->
 
-<div *ngIf ="quotes.length > 9; then quoteList else noQuotes"></div>
-<ng-template #quoteList>
+<div *ngIf ="listQuotes.length > 9">
+  <!-- <ng-template #quoteList> -->
     <table class="table">
       <tr>
         <th>Symbol</th>
         <th>Company Name</th>
         <th>Opening</th>
       </tr>
-      <tr *ngFor = "let q of quotes">
+      <tr *ngFor = "let q of listQuotes">
         <td><a href="#">{{q.symbol}}</a></td>
         <td>{{q.companyName}}</td>
         <td>{{q.open}}</td>
       </tr>
     </table>
-</ng-template>
-<ng-template #noQuotes>No table yet!</ng-template>
+  <!-- </ng-template> -->
+</div>
+<!-- <ng-template #noQuotes>No table yet!</ng-template> -->
+
 
 <div>
   <!-- this will pring out list of the symbols -->
