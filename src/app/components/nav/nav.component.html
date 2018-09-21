@@ -1,9 +1,11 @@
-<nav>
-    <!-- <a routerLink="/login">Login</a> -->
-    <a routerLink='/home'>Home</a>
-    <a routerLink='/directory'>Stock Directory</a>
-    <a routerLink="/portfolio">Portfolio</a>
-    <a routerLink="/settings">Change Settings</a>
-    <a routerLink="/logout">Logout</a>
-  </nav>
-<router-outlet></router-outlet>
+<div class="container">
+  <nav class="nav nav-tabs">
+      <!-- <a routerLink="/login">Login</a> -->
+      <a routerLink='/home' class="nav-link">Home</a>
+      <a routerLink='/directory' class="nav-link">Stock Directory</a>
+      <a routerLink="/portfolio" class="nav-link">Portfolio</a>
+      <a routerLink="/settings" class="nav-link">Change Settings</a>
+      <a routerLink="/logout" class="nav-link">Logout</a>
+    </nav>
+  <router-outlet></router-outlet>
+</div>

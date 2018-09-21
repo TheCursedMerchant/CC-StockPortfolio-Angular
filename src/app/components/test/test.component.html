@@ -1,41 +1,41 @@
+<div class="container">
+  <app-nav></app-nav>
 
-<app-nav></app-nav>
+  <div class = "container">
+    <h2>Click to get Stock!</h2>
+    <label>Let's Go!</label>
+    <!-- <button name = "sumbit" (click) = "getStocks()">Submit</button> -->
+    <button name = "getSymbols" (click) = "getSymbols()">Get Symbols (temporary button)</button>
+    <!-- <button name = "getquotes" (click) = "getCireyQuotes(0, 8)">Get Quotes(wat we wanna do for directory)
+    </button> -->
+    <button name="back to the beginning" (click) = "backToZero()">First</button>
+    <button name = "getquotes" (click) = "getNextQuotes()">Next 10 >></button>
 
-<div class = "container">
-  <h2>Click to get Stock!</h2>
-  <label>Let's Go!</label>
-  <!-- <button name = "sumbit" (click) = "getStocks()">Submit</button> -->
-  <button name = "getSymbols" (click) = "getSymbols()">Get Symbols (temporary button)</button>
-  <!-- <button name = "getquotes" (click) = "getCireyQuotes(0, 8)">Get Quotes(wat we wanna do for directory)
-  </button> -->
-  <button name="back to the beginning" (click) = "backToZero()">First</button>
-  <button name = "getquotes" (click) = "getNextQuotes()">Next 10 >></button>
+  <!-- </div>
+  <h4>{{stock.symb}}, {{stock.companyN}}, {{stock.opening}}</h4> -->
 
-<!-- </div>
- <h4>{{stock.symb}}, {{stock.companyN}}, {{stock.opening}}</h4> -->
+  <div *ngIf ="listQuotes.length > 9">
+    <!-- <ng-template #quoteList> -->
+      <table class="table">
+        <tr>
+          <th>Symbol</th>
+          <th>Company Name</th>
+          <th>Opening</th>
+        </tr>
+        <tr *ngFor = "let q of listQuotes">
+          <td><a href="#">{{q.symbol}}</a></td>
+          <td>{{q.companyName}}</td>
+          <td>{{q.open}}</td>
+        </tr>
+      </table>
+    <!-- </ng-template> -->
+  </div>
+  <!-- <ng-template #noQuotes>No table yet!</ng-template> -->
 
-<div *ngIf ="listQuotes.length > 9">
-  <!-- <ng-template #quoteList> -->
-    <table class="table">
-      <tr>
-        <th>Symbol</th>
-        <th>Company Name</th>
-        <th>Opening</th>
-      </tr>
-      <tr *ngFor = "let q of listQuotes">
-        <td><a href="#">{{q.symbol}}</a></td>
-        <td>{{q.companyName}}</td>
-        <td>{{q.open}}</td>
-      </tr>
-    </table>
-  <!-- </ng-template> -->
+
+  <div>
+    <!-- this will pring out list of the symbols -->
+    <p *ngFor = "let symbol of symbols">{{symbol}}</p>
+  </div>
 </div>
-<!-- <ng-template #noQuotes>No table yet!</ng-template> -->
-
-
-<div>
-  <!-- this will pring out list of the symbols -->
-  <p *ngFor = "let symbol of symbols">{{symbol}}</p>
-</div>
-
 
