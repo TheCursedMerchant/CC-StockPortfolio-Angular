@@ -83,6 +83,8 @@ export class TestComponent implements OnInit {
   // }
 
   getCireyQuotes(start:number, end:number){
+
+    this.getSymbols();
     for(let i = start; i < end; i++)
     {
       console.log(i);
