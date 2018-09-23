@@ -24,6 +24,7 @@ export class TestComponent implements OnInit {
   //   opening: undefined
   // }
 
+  listQuotes : QuoteClass[] = [];
   quotes : QuoteClass[] = [];//[{symbol: 'a', companyName: 'b', open: 234}];
   // quotes : {symbol: undefined, companyName: undefined, open: undefined}[] = [];
   
@@ -84,12 +85,14 @@ export class TestComponent implements OnInit {
 
   getCireyQuotes(start:number, end:number){
 
+    this.getSymbols();
     for(let i = start; i < end; i++)
     {
       console.log(i);
       let url = "https://api.iextrading.com/1.0/stock/" + this.symbols[i] + "/quote?filter=symbol,open,companyName";
       this.myService.getQuoteCirey(url)
       .then((currentQuote)=>{
+        this.listQuotes[i - start];
         this.quotes[i - start] = currentQuote;
       });
     }
