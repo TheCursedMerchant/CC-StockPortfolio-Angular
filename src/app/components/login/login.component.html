@@ -4,11 +4,11 @@
     <!-- since we have GetMapping and PostMapping -->
     <!-- the action is what page it'll take us after we click the button -->
     <!-- Random change sorry Cindy :) -->
-  <form method="POST" >    
+  <form method="post">    
     <label>Username: </label>
-    <input type="text" name="username"><br><br>
+    <input type="text" name="username" (change) = setUsername()><br><br>
     <label>Password: </label>
-    <input type="password" name="password"><br><br>
-    <input type="submit" value="Login">
+    <input type="password" name="password" (change) = setPassword()><br><br>
+    <input type="submit" value="Login" (click)="sendCredentials()">
   </form>
 </div>
