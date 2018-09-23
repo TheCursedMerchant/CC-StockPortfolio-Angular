@@ -15,7 +15,7 @@ phases:
             - ng build --${BUILD_ENV} --aot
     post_build:
          commands:
-            - aws s3 cp dist s3://${S3_BUCKET} --recursive
+            - aws s3 cp dist/CC-Stock-Portfolio-P2-Angular s3://${S3_BUCKET} --recursive
             - echo Build completed on `date`
 artifacts:
     files:
