@@ -13,7 +13,7 @@ export class CredentialsService {
 
 postCredentials(usr: User): Observable<User> {
   
-  const headers = new HttpHeaders().set('content-type','application/json');
+  const headers = new HttpHeaders({"Acess-Control-Allow-Origin":'*'}).set('content-type','application/json');
   var body = 
   {
     username: usr.userN,
