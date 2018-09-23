@@ -1,14 +1,16 @@
+
 <div class="container">
-  <h2>Welcome</h2>
-    <!-- the method is how our controller can do the correct function when we click login -->
-    <!-- since we have GetMapping and PostMapping -->
-    <!-- the action is what page it'll take us after we click the button -->
-    <!-- Random change sorry Cindy :) -->
-  <form method="post">    
-    <label>Username: </label>
-    <input type="text" name="username" (change) = setUsername()><br><br>
-    <label>Password: </label>
-    <input type="password" name="password" (change) = setPassword()><br><br>
-    <input type="submit" value="Login" (click)="sendCredentials()">
-  </form>
-</div>
+    <h2>Welcome</h2>
+      <!-- the method is how our controller can do the correct function when we click login -->
+      <!-- since we have GetMapping and PostMapping -->
+      <!-- the action is what page it'll take us after we click the button -->
+      <!-- Random change sorry Cindy :) -->
+    <div>    
+      <label>Username: </label>
+      <input type="text" [(ngModel)] = "userN"/>
+      <br/><br/>
+      <label>Password: </label>
+      <input type="password" [(ngModel)] = "passW"/><br/><br/>
+      <input type="submit" value="Login" (click) = "sendCredentials()"/>
+    </div>
+  </div>
