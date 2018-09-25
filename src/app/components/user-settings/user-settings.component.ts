@@ -23,6 +23,7 @@ export class UserSettingsComponent implements OnInit {
   }
 
   updateSettings(){
+    console.log("hey");
     this.userSettingsFormData = 
         new UserSettingsFormData(this.userN, this.oldPassW, this.newPassW, this.confirmPassW);
     this.userSettingsService.postFormData(this.userSettingsFormData)
@@ -31,6 +32,4 @@ export class UserSettingsComponent implements OnInit {
         console.log(this.user);
       });
   }
-
-
 }
