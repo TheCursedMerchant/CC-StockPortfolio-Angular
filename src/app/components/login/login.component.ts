@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/user';
 import { CredentialsService } from '../../services/credentials.service';
+import { SessionService } from '../../services/session.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,7 @@ export class LoginComponent implements OnInit {
 
   public user: User;
 
-  constructor(private postService: CredentialsService) { }
+  constructor(private postService: CredentialsService, private sessionService:SessionService) { }
 
   ngOnInit() {
     this.user = new User();
@@ -70,7 +71,11 @@ export class LoginComponent implements OnInit {
           this.user.userId = undefined;
           this.user.name = undefined;
         }else{
-          window.location.replace("home");
+          // window.location.replace("home");
+          this.sessionService.readSessionObject("http://localhost:8080/session").subscribe(session =>{
+            console.log(session);
+          }
+            );
           console.log("user found");
         }
         console.log(this.user);

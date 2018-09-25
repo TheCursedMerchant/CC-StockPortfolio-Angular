@@ -11,46 +11,36 @@ import { QuoteClass } from '../../models/quoteClass';
 })
 export class TestComponent implements OnInit {
 
-  constructor(private myService: TestServiceService, private route: ActivatedRoute) { }
-
-  ngOnInit() {
-  }
-
   startIndex : number = 0;
   condition : boolean = false;
-  // stock : Stock = {
-  //   symb: undefined,
-  //   companyN: undefined,
-  //   opening: undefined
-  // }
 
   listQuotes : QuoteClass[] = [];
   quotes : QuoteClass[] = [];//[{symbol: 'a', companyName: 'b', open: 234}];
   // quotes : {symbol: undefined, companyName: undefined, open: undefined}[] = [];
   
-  symbols : string[] = [];    //omg b4 didnt work...but stackoverflow said we didnt initialize our
-                //array ;D   so needed to do = []; empty array
-  // cireyQuotes: Quote[];
+  symbols : string[] = [];    
   test : undefined;
 
-  // getStocks(){
-  //   this.myService.getStocks()
-  //   .subscribe((res =>{let resources = res["quote"];
-  //   this.stock.symb = (resources["symbol"]);
-  //   this.stock.companyN = resources["companyName"];
-  //   this.stock.opening = resources["open"];
-  // }));
-  // }
+  constructor(private myService: TestServiceService, private route: ActivatedRoute) { }
 
-  getSymbols(){
+  ngOnInit() {
+    this.getSymbols();
+  }
+
+  getSymbols(){                                   //one time initialization method
     this.myService.getSymbols().subscribe
     ((symbols =>{ 
       for(let i in symbols){
-        this.symbols.push(symbols[i]["symbol"]); //only did push to try to make work..i think can do
-                                                //regular way to set tho
-        // console.log(symbols[i]["symbol"]);
+        this.symbols.push(symbols[i]["symbol"]); 
       }
+
+    this.backToZero(); //start the table off with first 10
     }));
+  }
+
+  backToZero(){
+    this.startIndex = 0; //reset start inDex
+    this.getNextQuotes(); //call get tenquotes again, but with new startIndex :)
   }
 
   getNextQuotes(){
@@ -59,41 +49,14 @@ export class TestComponent implements OnInit {
     this.startIndex += 10;
   }
 
-  backToZero(){
-    this.startIndex = 0; //reset start inDex
-    this.getNextQuotes(); //call get tenquotes again, but with new startIndex :)
-  }
-
-  // getQuotes(start:number, end:number){
-  //   //call this after getSymbols has populated this.symbols[]
-  //   for(let i= start; i < end; i++) //for every symbol url
-  //   {
-  //     // https://api.iextrading.com/1.0/stock/aapl/quote?filter=symbol,open,companyName
-  //     //this quote except replace "aapl"
-  //     let url = "https://api.iextrading.com/1.0/stock/" + this.symbols[i] + "/quote?filter=symbol,open,companyName";
-  //     this.myService.getQuotes(url)
-  //     .subscribe((apiQuote =>{ 
-  //       // https://visualstudiomagazine.com/articles/2016/01/01/exploiting-typescript-arrays.aspx
-  //         // this.quotes[i - start] = new QuoteClass(
-  //           // apiQuote["symbol"], apiQuote["open"], apiQuote["companyName"]);               //"quotes" is array of quotes
-  //         // this.quotes[i - start]["symbol"] = apiQuote["symbol"];
-  //         // this.quotes[i - start]["open"] = apiQuote["open"];
-  //         // this.quotes[i - start]["companyName"] = apiQuote["companyName"];
-  //     }));
-  //   }
-  // }
-
   getCireyQuotes(start:number, end:number){
-
-    this.getSymbols();
     for(let i = start; i < end; i++)
     {
       console.log(i);
       let url = "https://api.iextrading.com/1.0/stock/" + this.symbols[i] + "/quote?filter=symbol,open,companyName";
       this.myService.getQuoteCirey(url)
       .then((currentQuote)=>{
-        this.listQuotes[i - start];
-        this.quotes[i - start] = currentQuote;
+        this.listQuotes[i - start] = currentQuote;
       });
     }
     this.condition = true;
