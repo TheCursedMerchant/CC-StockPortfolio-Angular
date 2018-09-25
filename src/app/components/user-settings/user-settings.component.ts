@@ -12,4 +12,8 @@ export class UserSettingsComponent implements OnInit {
   ngOnInit() {
   }
 
+  test(){
+    console.log("YAASSSSSSS BIIIIIIIITCHHHAAAAAAAAAAAAAAAAAAAAAAAAA");
+  }
+
 }
