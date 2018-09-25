@@ -23,7 +23,7 @@ export class NavComponent implements OnInit {
   }
 
   invalidateSession(){
-    this.sessionService.postSessionObject("http://localhost:8080/logout").subscribe( sessionArray => {
+    this.sessionService.readSessionObject("http://localhost:8080/logout").subscribe( sessionArray => {
       //testing
       console.log(sessionArray[0] +", "+sessionArray[1]+", "+sessionArray[2]);
     });

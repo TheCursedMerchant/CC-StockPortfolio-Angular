@@ -71,7 +71,7 @@ export class LoginComponent implements OnInit {
           this.user.userId = undefined;
           this.user.name = undefined;
         }else{
-          window.location.replace("home");
+          // window.location.replace("home");
           this.sessionService.readSessionObject("http://localhost:8080/session").subscribe(session =>{
             console.log(session);
           }
