@@ -2,10 +2,10 @@
   <nav class="nav nav-tabs">
       <!-- <a routerLink="/login">Login</a> -->
       <a routerLink='/home' class="nav-link" (click) ="sessionCheck()">Home</a>
-      <a routerLink='/directory' class="nav-link">Stock Directory</a>
-      <a routerLink="/portfolio" class="nav-link">Portfolio</a>
-      <a routerLink="/settings" class="nav-link">Change Settings</a>
-      <a routerLink="/logout" class="nav-link">Logout</a>
+      <a routerLink='/directory' class="nav-link" (click) = "sessionCheck()">Stock Directory</a>
+      <a routerLink="/portfolio" class="nav-link" (click) = "sessionCheck()">Portfolio</a>
+      <a routerLink="/settings" class="nav-link" (click) = "sessionCheck()">Change Settings</a>
+      <a routerLink="/logout" class="nav-link" (click) = "invalidateSession()">Logout</a>
     </nav>
   <router-outlet></router-outlet>
 </div>

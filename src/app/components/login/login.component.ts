@@ -72,9 +72,10 @@ export class LoginComponent implements OnInit {
           this.user.name = undefined;
         }else{
           window.location.replace("home");
-          // this.sessionService.readSessionObject().subscribe(session =>{
-          //   console.log("hey this is session: "+session);
-          // });
+          this.sessionService.readSessionObject("http://localhost:8080/session").subscribe(session =>{
+            console.log(session);
+          }
+            );
           console.log("user found");
         }
         console.log(this.user);

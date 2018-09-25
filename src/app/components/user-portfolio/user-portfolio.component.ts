@@ -10,6 +10,10 @@ export class UserPortfolioComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  
   }
 
+  url:string = "http://localhost:8080/stockTransactions";
+
+  
 }

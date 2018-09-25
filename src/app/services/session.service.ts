@@ -9,9 +9,12 @@ export class SessionService {
   //constructor inject the HttpClient dependency
   constructor(private httpClient:HttpClient) { }
 
-  readSessionObject():Observable<string[]>{
-    // return this.httpClient.post<string[]>("http://localhost:8080/session",{}); //get only needs a url
+  readSessionObject(url:string):Observable<string[]>{
                                                                           //post needs url, body, [header optional]
-    return this.httpClient.get<string[]>("http://localhost:8080/session");
+    return this.httpClient.get<string[]>(url);
+  }
+
+  postSessionObject(url:string) : Observable<string[]>{
+    return this.httpClient.post<string[]>(url, {});
   }
 }
