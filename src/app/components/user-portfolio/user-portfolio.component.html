@@ -13,7 +13,7 @@
         <th>Selling For</th>
         <th>Total Return %</th>
         <th>Date</th>
-        <th>User(temp)</th>
+        <!-- <th>User(temp)</th> -->
       </tr>
       <tr *ngFor = "let transaction of transactions">
         <td>{{transaction.id}}</td>
@@ -25,7 +25,7 @@
         <td>{{transaction.sellingFor}}</td>
         <td>{{transaction.totalReturn}}</td>
         <td>{{transaction.date | date}}</td>
-        <td>{{transaction.user.userN}}</td>
+        <!-- <td>{{transaction.user.userN}}</td> -->
       </tr>
     </table>
   </div>

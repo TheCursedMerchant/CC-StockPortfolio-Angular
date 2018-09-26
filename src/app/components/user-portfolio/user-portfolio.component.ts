@@ -27,11 +27,11 @@ export class UserPortfolioComponent implements OnInit {
   fillPortfolioFromDB(): void{
     this.transactionService.getDatabaseTransactions("http://localhost:8094/stockTransactions").subscribe(
       objects =>{ 
-        for(let obj of objects)
-          this.transactions.push( new Transaction(obj.id, obj.stockSymbol, obj.numShares, 
-                                  obj.currentPrice, obj.openPrice, obj.boughtFor, obj.sellingFor, 
-                                  obj.totalReturn, obj.date, obj.user, obj.stockName
-          )); 
+          for(let obj of objects)       //use the session to show the profile specific to the user
+              if(obj.user.userN === this.localStorageService.getSaved("username"))
+                  this.transactions.push( new Transaction(obj.id, obj.stockSymbol, obj.numShares, 
+                                          obj.currentPrice, obj.openPrice, obj.boughtFor, obj.sellingFor, 
+                                          obj.totalReturn, obj.date, obj.user, obj.stockName )); 
       }
     );
   }
