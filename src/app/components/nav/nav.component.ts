@@ -15,7 +15,7 @@ export class NavComponent implements OnInit {
   ngOnInit() {
   }
   sessionCheck(){
-    this.sessionService.readSessionObject("http://localhost:8080/session").subscribe( sessionObj => {
+    this.sessionService.readSessionObject("http://localhost:8094/session").subscribe( sessionObj => {
       console.log(sessionObj);
       // if(sessionObj[0] === null) //no session
       //   window.location.replace("login");
@@ -23,7 +23,7 @@ export class NavComponent implements OnInit {
   }
 
   invalidateSession(){
-    this.sessionService.readSessionObject("http://localhost:8080/logout").subscribe( sessionArray => {
+    this.sessionService.readSessionObject("http://localhost:8094/logout").subscribe( sessionArray => {
       //testing
       console.log(sessionArray[0] +", "+sessionArray[1]+", "+sessionArray[2]);
     });

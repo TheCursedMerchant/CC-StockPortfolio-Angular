@@ -71,14 +71,15 @@ export class LoginComponent implements OnInit {
           this.user.userId = undefined;
           this.user.name = undefined;
         }else{
-          // window.location.replace("home");
-          this.sessionService.readSessionObject("http://localhost:8080/session").subscribe(session =>{
-            console.log(session);
-          }
-            );
+          window.location.replace("home");
+          localStorage.setItem("username", this.user.userN);
+          localStorage.setItem("password", this.user.userN);
+          localStorage.setItem("name", this.user.userN);
           console.log("user found");
+          console.log("Username: " + localStorage.getItem("username"));
+          console.log("Password: " + localStorage.getItem("password"));
+          console.log("Name: " + localStorage.getItem("name"));
         }
-        console.log(this.user);
     });
   }
 }

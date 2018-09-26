@@ -13,7 +13,8 @@ export class UserPortfolioComponent implements OnInit {
   
   }
 
-  url:string = "http://localhost:8080/stockTransactions";
+  url:string = "http://localhost:8094/stockTransactions";
+  username = localStorage.getItem("username");
 
   
 }
