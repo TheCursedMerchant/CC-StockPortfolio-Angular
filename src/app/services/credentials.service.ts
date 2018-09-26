@@ -14,7 +14,7 @@ export class CredentialsService {
 
   //Url's we need to send 
   loginUrl: string = "http://localhost:8094/login";
-  settingsUrl: string = "http://localhost:8094/settings";
+  settingsUrl: string = "http://localhost:8094/users";
 
   //Send our entered username and password to the DB
   postCredentials(usr: User): Promise<User> {
@@ -28,8 +28,8 @@ export class CredentialsService {
   return this.httpClient.post<User>(this.loginUrl, body, {headers} ).toPromise();
 }
 
- //observable post function
- postFormData(formData:UserSettingsFormData) : Observable<User> {
+ //observable put function
+ putFormData(formData:UserSettingsFormData) : Observable<User> {
   const headers = new HttpHeaders().set("content-type", "application/json");
   //must be named "headers" else problems during return
   let body = 
@@ -39,8 +39,8 @@ export class CredentialsService {
     newPassword: formData.newPassword,
     confirmPassword: formData.confirmPassword
   };
-  return this.httpClient.post<User>(this.settingsUrl, body, {headers});
-  //maybe UserSettingsFormData instead of User
+  
+  return this.httpClient.put<User>(this.settingsUrl, body, {headers});
 }
 
 }

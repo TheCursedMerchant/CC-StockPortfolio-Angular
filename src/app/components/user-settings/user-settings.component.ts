@@ -27,13 +27,10 @@ export class UserSettingsComponent implements OnInit {
   }
 
   updateSettings(){
-    console.log("hey");
     this.userSettingsFormData = 
-        new UserSettingsFormData(this.userN, this.oldPassW, this.newPassW, this.confirmPassW);
-    this.userService.postFormData(this.userSettingsFormData)
-      .subscribe(usr => {
+          new UserSettingsFormData(this.userN, this.oldPassW, this.newPassW, this.confirmPassW);
+    this.userService.putFormData(this.userSettingsFormData).subscribe(usr => {
         this.user = usr;
-        console.log(this.user);
       });
   }
 }

@@ -6,7 +6,6 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { StockCompanyComponent } from './components/stock-company/stock-company.component';
-import { StockDirectoryComponent } from './components/stock-directory/stock-directory.component';
 import { UserPortfolioComponent } from './components/user-portfolio/user-portfolio.component';
 import { UserSettingsComponent } from './components/user-settings/user-settings.component';
 import { LoginComponent } from './components/login/login.component';
@@ -22,7 +21,6 @@ import { TransactionServiceService } from './services/transaction-service.servic
   declarations: [
     AppComponent,
     StockCompanyComponent,
-    StockDirectoryComponent,
     UserPortfolioComponent,
     UserSettingsComponent,
     LoginComponent,
