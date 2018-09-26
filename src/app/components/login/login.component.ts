@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.user = new User();
     console.log(this.user);
+    
   }
 
   /*sendCredentials(){
@@ -79,6 +80,7 @@ export class LoginComponent implements OnInit {
           console.log("Username: " + localStorage.getItem("username"));
           console.log("Password: " + localStorage.getItem("password"));
           console.log("Name: " + localStorage.getItem("name"));
+
         }
     });
   }

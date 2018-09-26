@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LocalStorageService } from '../../services/localstorage.service';
 
 @Component({
   selector: 'app-stock-directory',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StockDirectoryComponent implements OnInit {
 
-  constructor() { }
+  constructor(private localStorageService:LocalStorageService) { }
 
   ngOnInit() {
+    if(this.localStorageService.getSaved("username") === null)
+      window.location.replace("login");
   }
 
 }

@@ -6,7 +6,6 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class SessionService {
-  //constructor inject the HttpClient dependency
-  constructor(private httpClient:HttpClient) { }
-
+  constructor() { }
+  
 }
