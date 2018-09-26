@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserSettingsFormData } from '../../models/userSettingsFormData';
-import { UserSettingsServicesService } from '../../services/user-settings-services.service';
 import { User } from '../../models/user';
 import { LocalStorageService } from '../../services/localstorage.service';
+import { CredentialsService } from '../../services/credentials.service';
 
 @Component({
   selector: 'app-user-settings',
@@ -20,7 +20,7 @@ export class UserSettingsComponent implements OnInit {
 
   //inject your service to instantiate it. make it private singleton
   constructor( private localStorageService:LocalStorageService,
-               private userSettingsService:UserSettingsServicesService ) { }
+               private userService:CredentialsService ) { }
   ngOnInit() {
     if(this.localStorageService.getSaved("username") === null)
       window.location.replace("login");
@@ -30,7 +30,7 @@ export class UserSettingsComponent implements OnInit {
     console.log("hey");
     this.userSettingsFormData = 
         new UserSettingsFormData(this.userN, this.oldPassW, this.newPassW, this.confirmPassW);
-    this.userSettingsService.postFormData(this.userSettingsFormData)
+    this.userService.postFormData(this.userSettingsFormData)
       .subscribe(usr => {
         this.user = usr;
         console.log(this.user);
