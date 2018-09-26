@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
           this.user.userId = undefined;
           this.user.name = undefined;
         }else{
-          //window.location.replace("home");
+          window.location.replace("home");
           localStorage.setItem("username", this.user.userN);
           localStorage.setItem("password", this.user.userN);
           localStorage.setItem("name", this.user.userN);

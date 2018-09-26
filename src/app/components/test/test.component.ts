@@ -3,6 +3,7 @@ import { TestServiceService } from '../../services/test-service.service';
 import { ActivatedRoute } from '../../../../node_modules/@angular/router';
 import { QuoteClass } from '../../models/quoteClass';
 import { LocalStorageService } from '../../services/localstorage.service';
+import { parseHostBindings } from '../../../../node_modules/@angular/compiler';
 
 @Component({
   selector: 'app-test',
@@ -65,6 +66,17 @@ export class TestComponent implements OnInit {
     }
     this.condition = true;
   }
+
+  getSymbol(sym) {
+    window.location.replace("company")
+    localStorage.setItem("symbol", sym);
+  }
 }
+
+
+
+
+
+
 
 // https://www.concretepage.com/questions/544

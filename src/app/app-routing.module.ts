@@ -7,6 +7,7 @@ import { UserPortfolioComponent } from './components/user-portfolio/user-portfol
 import { LogoutComponent } from './components/logout/logout.component';
 import { HomeComponent } from './components/home/home.component';
 import { TestComponent } from './components/test/test.component';
+import { StockCompanyComponent } from './components/stock-company/stock-company.component';
 
 const routes: Routes = [
  {path: 'login', component: LoginComponent },
@@ -14,7 +15,8 @@ const routes: Routes = [
  {path: 'portfolio', component: UserPortfolioComponent },
  {path: 'logout', component: LogoutComponent},
  {path: 'home', component: HomeComponent},
- {path: 'directory', component: TestComponent}
+ {path: 'directory', component: TestComponent},
+ {path: 'company', component: StockCompanyComponent}
 ];
 
 @NgModule({

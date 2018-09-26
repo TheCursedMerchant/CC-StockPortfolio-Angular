@@ -7,11 +7,10 @@
       <!-- Random change sorry Cindy :) -->
     <div>    
       <label>Username: </label>
-      <input type="text" [(ngModel)] = "userN"/>
+      <input required type="text" [(ngModel)] = "userN" />
       <br/><br/>
       <label>Password: </label>
-      <input type="password" [(ngModel)] = "passW"/><br/><br/>
+      <input required type="password" [(ngModel)] = "passW"/><br/><br/>
       <input type="submit" value="Login" (click) = "sendCredentials()"/>
-      <p> the name is {{user.name}}</p>
     </div>
   </div>

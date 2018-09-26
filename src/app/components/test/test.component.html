@@ -2,11 +2,6 @@
   <app-nav></app-nav>
 
   <div class = "container">
-    <!-- <button name = "sumbit" (click) = "getStocks()">Submit</button> -->
-    <!-- <button name = "getSymbols" (click) = "getSymbols()">Get Symbols (temporary button)</button> -->
-    <!-- don't need getsymbols anymore. it is called in .ts's ngOnInit(){} -->
-    <!-- <button name = "getquotes" (click) = "getCireyQuotes(0, 8)">Get Quotes(wat we wanna do for directory)
-    </button> -->
 
   <div *ngIf ="listQuotes.length > 9">
       <table class="table">
@@ -16,9 +11,9 @@
           <th>Opening</th>
         </tr>
         <tr *ngFor = "let q of listQuotes">
-          <td><a href="#">{{q.symbol}}</a></td>
-          <td>{{q.companyName}}</td>
-          <td>{{q.open}}</td>
+          <td><a href = "company" (click) = "getSymbol($q.symbol)">{{q.symbol}}</a></td>
+          <td><a href = "company" (click) = "getSymbol($q.symbol)" >{{q.companyName}}</a></td>
+          <td><a>{{q.open}}</a></td>
         </tr>
       </table>
   </div>
@@ -26,4 +21,3 @@
   <button name="back to the beginning" (click) = "backToZero()">First</button>
   <button name = "getquotes" (click) = "getNextQuotes()">Next 10 >></button>
 </div>
-
