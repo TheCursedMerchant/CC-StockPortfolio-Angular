@@ -9,7 +9,7 @@ import { UserSettingsFormData } from '../models/userSettingsFormData';
 })
 export class UserSettingsServicesService {
 
-  url: string = "http://localhost:8080/settings";
+  url: string = "http://localhost:8094/settings";
   constructor(private httpClient:HttpClient) { } //constructor injection our httpclient
 
   //observable post function
