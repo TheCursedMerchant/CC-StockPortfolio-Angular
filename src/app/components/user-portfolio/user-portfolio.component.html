@@ -17,6 +17,7 @@
         <!-- <th>User(temp)</th> -->
       </tr>
       <tr *ngFor = "let transaction of transactions">
+                        <!-- use $ for interpolation-->
         <td><input type="number" name="numSell" style="max-width: 50px" class="form-control"></td>
         <td>{{transaction.id}}</td>
         <td>{{transaction.symbol}}</td>

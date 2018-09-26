@@ -8,13 +8,17 @@ import { LocalStorageService } from '../../services/localstorage.service';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
-
+  username:string = null;
   //inject session service dependency we're gonna use to verify our session
   constructor(private localStorageService:LocalStorageService) { }
 
   ngOnInit() {
-    if(this.localStorageService.getSaved("username") === null)
+    if(this.localStorageService.getSaved("username") === null){
+      this.username = null;
       window.location.replace("login");
+    }
+    else //session available
+      this.username = this.localStorageService.getSaved("username");
   }
 
   sessionCheck(){
