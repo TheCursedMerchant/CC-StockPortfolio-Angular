@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/user';
 import { CredentialsService } from '../../services/credentials.service';
+import { LocalStorageService } from '../../services/localstorage.service';
 
 @Component({
   selector: 'app-login',
@@ -18,12 +19,13 @@ export class LoginComponent implements OnInit {
 
   public user: User;
 
-  constructor(private postService: CredentialsService) { }
+  constructor(private postService: CredentialsService, private localStorageService:LocalStorageService) { }
 
   ngOnInit() {
     this.user = new User();
-    console.log(this.user);
-    
+    //if session is open, and they go to /login, should just take them to home page
+    if(this.localStorageService.getSaved("username") !== null)
+      window.location.replace("home");
   }
 
   sendCredentials(){
@@ -50,10 +52,11 @@ export class LoginComponent implements OnInit {
           localStorage.setItem("username", this.user.userN);
           localStorage.setItem("password", this.user.userN);
           localStorage.setItem("name", this.user.userN);
-          console.log("user found");
-          console.log("Username: " + localStorage.getItem("username"));
-          console.log("Password: " + localStorage.getItem("password"));
-          console.log("Name: " + localStorage.getItem("name"));
+          window.location.replace("home");
+          // console.log("user found");
+          // console.log("Username: " + localStorage.getItem("username"));
+          // console.log("Password: " + localStorage.getItem("password"));
+          // console.log("Name: " + localStorage.getItem("name"));
 
         }
     });

@@ -1,15 +1,51 @@
 <div class="container">
   <app-nav></app-nav>
-  <h2>{{username}}'s Stock Portfolio</h2>
-  <table class="table">
-    <tr>
-      <th>Sticker Symbol</th>
-      <th>Shares</th>
-      <th>Current</th>
-      <th>Opening</th>
-      <th>Bought For</th>
-      <th>Selling For</th>
-      <th>Total Return %</th>
-    </tr>
-  </table>
+  <h2>{{username | titlecase}}'s Stock Portfolio</h2>
+  <div *ngIf="transactions.length > 0; else NoStocks">
+    <table class="table">
+      <tr>
+        <th>Sell</th> 
+        <th>Transaction ID</th>
+        <th>Sticker Symbol</th>
+        <th>Shares</th>
+        <th>Current</th>
+        <th>Opening</th>
+        <th>Bought For</th>
+        <th>Selling For</th>
+        <th>Total Return %</th>
+        <th>Date</th>
+        <!-- <th>User(temp)</th> -->
+      </tr>
+      <tr *ngFor = "let transaction of transactions">
+        <td><input type="number" name="numSell" style="max-width: 50px" class="form-control"></td>
+        <td>{{transaction.id}}</td>
+        <td>{{transaction.symbol}}</td>
+        <td>{{transaction.shares}}</td>
+        <td>{{transaction.current}}</td>
+        <td>{{transaction.opening}}</td>
+        <td>{{transaction.boughtFor}}</td>
+        <td>{{transaction.sellingFor}}</td>
+        <td>{{transaction.totalReturn}}</td>
+        <td>{{transaction.date | date}}</td>
+        <!-- <td>{{transaction.user.userN}}</td> -->
+      </tr>
+    </table>
+    <button value="Sell Stocks" class="btn btn-secondary" style="text-align: right">Sell Stocks</button>
+  </div>
+  <ng-template #NoStocks>
+    Sorry, but it seems you have no stocks to sell at the moment. Click <a routerLink="..directory">here</a>
+    to see a list of stocks.
+  </ng-template>
+
+  <div style="color:red; text-align: left">
+    <p>
+      **To Do: 
+    </p>
+    <ul>
+      <li>(optional)clump together transactions of same symbol(average up), button to reveal all transactions</li>
+      <li>button to press to sell stocks. should take to a success page? some kind of notification</li>
+      <li>function to sell stocks must check that array somehow to not let sell too much...
+        might need to make another view in controller to post to there and let it handle the database changes</li>
+    </ul>
+  </div>
 </div>

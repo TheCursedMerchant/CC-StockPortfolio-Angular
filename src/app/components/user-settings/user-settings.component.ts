@@ -20,20 +20,17 @@ export class UserSettingsComponent implements OnInit {
 
   //inject your service to instantiate it. make it private singleton
   constructor( private localStorageService:LocalStorageService,
-               private userSettingsService:CredentialsService ) { }
+               private userService:CredentialsService ) { }
   ngOnInit() {
     if(this.localStorageService.getSaved("username") === null)
       window.location.replace("login");
   }
 
   updateSettings(){
-    console.log("hey");
     this.userSettingsFormData = 
-        new UserSettingsFormData(this.userN, this.oldPassW, this.newPassW, this.confirmPassW);
-    this.userSettingsService.postFormData(this.userSettingsFormData)
-      .subscribe(usr => {
+          new UserSettingsFormData(this.userN, this.oldPassW, this.newPassW, this.confirmPassW);
+    this.userService.putFormData(this.userSettingsFormData).subscribe(usr => {
         this.user = usr;
-        console.log(this.user);
       });
   }
 }
