@@ -16,6 +16,7 @@ import { TestServiceService } from './services/test-service.service';
 import { HttpClientModule } from '../../node_modules/@angular/common/http';
 import { TestComponent } from './components/test/test.component';
 import { NavComponent } from './components/nav/nav.component';
+import { TransactionServiceService } from './services/transaction-service.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { NavComponent } from './components/nav/nav.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [TestServiceService],
+  providers: [TestServiceService, TransactionServiceService],
   bootstrap: [AppComponent]
    //adding bootstrap: npm install bootstrap. in angular.json, put location under styles. restart to do ng serve
 })

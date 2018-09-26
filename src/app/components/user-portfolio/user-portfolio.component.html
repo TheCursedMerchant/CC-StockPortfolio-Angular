@@ -1,15 +1,32 @@
 <div class="container">
   <app-nav></app-nav>
-  <h2>{{username}}'s Stock Portfolio</h2>
-  <table class="table">
-    <tr>
-      <th>Sticker Symbol</th>
-      <th>Shares</th>
-      <th>Current</th>
-      <th>Opening</th>
-      <th>Bought For</th>
-      <th>Selling For</th>
-      <th>Total Return %</th>
-    </tr>
-  </table>
+  <h2>{{username | titlecase}}'s Stock Portfolio</h2>
+  <div *ngIf="transactions.length > 0">
+    <table class="table">
+      <tr>
+        <th>Transaction ID</th>
+        <th>Sticker Symbol</th>
+        <th>Shares</th>
+        <th>Current</th>
+        <th>Opening</th>
+        <th>Bought For</th>
+        <th>Selling For</th>
+        <th>Total Return %</th>
+        <th>Date</th>
+        <th>User(temp)</th>
+      </tr>
+      <tr *ngFor = "let transaction of transactions">
+        <td>{{transaction.id}}</td>
+        <td>{{transaction.symbol}}</td>
+        <td>{{transaction.shares}}</td>
+        <td>{{transaction.current}}</td>
+        <td>{{transaction.opening}}</td>
+        <td>{{transaction.boughtFor}}</td>
+        <td>{{transaction.sellingFor}}</td>
+        <td>{{transaction.totalReturn}}</td>
+        <td>{{transaction.date | date}}</td>
+        <td>{{transaction.user.userN}}</td>
+      </tr>
+    </table>
+  </div>
 </div>
