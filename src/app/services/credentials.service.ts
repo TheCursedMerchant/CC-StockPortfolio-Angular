@@ -9,7 +9,7 @@ import { User } from '../models/user';
 export class CredentialsService {
 
   constructor(private myClient: HttpClient) {}
-  url: string = "http://localhost:8080/login";
+  url: string = "http://localhost:8094/login";
 
 postCredentials(usr: User): Promise<User> {
   

@@ -70,15 +70,12 @@ export class LoginComponent implements OnInit {
           console.log("user not found");
           this.user.userId = undefined;
           this.user.name = undefined;
-        }else{
+      }
+      else{
           // window.location.replace("home");
-          this.sessionService.readSessionObject("http://localhost:8080/session").subscribe(session =>{
-            console.log(session);
-          }
-            );
           console.log("user found");
-        }
-        console.log(this.user);
+      }
+      console.log(this.user);
     });
   }
 }
