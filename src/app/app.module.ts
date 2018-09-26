@@ -17,7 +17,6 @@ import { HttpClientModule } from '../../node_modules/@angular/common/http';
 import { TestComponent } from './components/test/test.component';
 import { NavComponent } from './components/nav/nav.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,

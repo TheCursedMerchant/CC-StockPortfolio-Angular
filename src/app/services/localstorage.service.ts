@@ -4,11 +4,16 @@ import { HttpClient } from '../../../node_modules/@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class LocalstorageService {
+export class LocalStorageService {
 
-  constructor() { };
+  constructor() { }
 
   saveItem(key, val) : void {
     localStorage.setItem(key, val);
   }
+
+  getSaved(key: string) {
+    return localStorage.getItem(key);
+  }
+
 }

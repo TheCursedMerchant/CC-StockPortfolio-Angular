@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LocalStorageService } from '../../services/localstorage.service';
 
 @Component({
   selector: 'app-user-portfolio',
@@ -7,10 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserPortfolioComponent implements OnInit {
 
-  constructor() { }
+  constructor(private localStorageService:LocalStorageService) { }
 
   ngOnInit() {
-  
+    if(this.localStorageService.getSaved("username") === null)
+      window.location.replace("login");
   }
   
   url:string = "http://localhost:8094/stockTransactions";

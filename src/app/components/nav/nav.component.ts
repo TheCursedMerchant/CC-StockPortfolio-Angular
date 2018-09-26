@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { LocalStorageService } from '../../services/localstorage.service';
 
 
 @Component({
@@ -10,9 +10,20 @@ import { Component, OnInit } from '@angular/core';
 export class NavComponent implements OnInit {
 
   //inject session service dependency we're gonna use to verify our session
-  constructor() { }
+  constructor(private localStorageService:LocalStorageService) { }
 
   ngOnInit() {
+    if(this.localStorageService.getSaved("username") === null)
+      window.location.replace("login");
+  }
+
+  sessionCheck(){
+    if(this.localStorageService.getSaved("username") === null)
+      window.location.replace("login");
+  }
+
+  invalidateSession(){
+    localStorage.clear();
   }
 
 }

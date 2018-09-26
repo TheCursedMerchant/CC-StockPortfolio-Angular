@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TestServiceService } from '../../services/test-service.service';
 import { ActivatedRoute } from '../../../../node_modules/@angular/router';
 import { QuoteClass } from '../../models/quoteClass';
+import { LocalStorageService } from '../../services/localstorage.service';
 
 @Component({
   selector: 'app-test',
@@ -21,9 +22,12 @@ export class TestComponent implements OnInit {
   symbols : string[] = [];    
   test : undefined;
 
-  constructor(private myService: TestServiceService, private route: ActivatedRoute) { }
+  constructor(private myService: TestServiceService, private route: ActivatedRoute,
+              private localStorageService:LocalStorageService) { }
 
   ngOnInit() {
+    if(this.localStorageService.getSaved("username") === null)
+      window.location.replace("login");
     this.getSymbols();
   }
 
