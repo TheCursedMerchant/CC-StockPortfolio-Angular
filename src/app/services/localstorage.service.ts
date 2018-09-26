@@ -6,7 +6,7 @@ import { HttpClient } from '../../../node_modules/@angular/common/http';
 })
 export class LocalstorageService {
 
-  constructor(private http: HttpClient) { }
+  constructor() { };
 
   saveItem(key, val) : void {
     localStorage.setItem(key, val);

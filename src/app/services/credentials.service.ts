@@ -2,16 +2,22 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from '../../../node_modules/rxjs';
 import { User } from '../models/user';
+import { UserSettingsFormData } from '../models/userSettingsFormData';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CredentialsService {
 
-  constructor(private myClient: HttpClient) {}
-  url: string = "http://localhost:8094/login";
+  //Constructor with HttpClient Dependency Injected 
+  constructor(private httpClient: HttpClient) {};
 
-postCredentials(usr: User): Promise<User> {
+  //Url's we need to send 
+  loginUrl: string = "http://localhost:8094/login";
+  settingsUrl: string = "http://localhost:8094/settings";
+
+  //Send our entered username and password to the DB
+  postCredentials(usr: User): Promise<User> {
   
   const headers = new HttpHeaders({'Access-Control-Allow-Origin':'*'}).set('content-type','application/json');
   var body = 
@@ -19,7 +25,22 @@ postCredentials(usr: User): Promise<User> {
     username: usr.userN,
     password: usr.passW
   };
-  return this.myClient.post<User>(this.url, body, {headers} ).toPromise();
+  return this.httpClient.post<User>(this.loginUrl, body, {headers} ).toPromise();
+}
+
+ //observable post function
+ postFormData(formData:UserSettingsFormData) : Observable<User> {
+  const headers = new HttpHeaders().set("content-type", "application/json");
+  //must be named "headers" else problems during return
+  let body = 
+  { 
+    username: formData.username,
+    oldPassword: formData.oldPassword,
+    newPassword: formData.newPassword,
+    confirmPassword: formData.confirmPassword
+  };
+  return this.httpClient.post<User>(this.settingsUrl, body, {headers});
+  //maybe UserSettingsFormData instead of User
 }
 
 }

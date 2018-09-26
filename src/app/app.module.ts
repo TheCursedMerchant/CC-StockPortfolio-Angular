@@ -16,7 +16,7 @@ import { TestServiceService } from './services/test-service.service';
 import { HttpClientModule } from '../../node_modules/@angular/common/http';
 import { TestComponent } from './components/test/test.component';
 import { NavComponent } from './components/nav/nav.component';
-import { SettingsComponent } from './components/settings/settings.component';
+
 
 @NgModule({
   declarations: [
@@ -29,8 +29,7 @@ import { SettingsComponent } from './components/settings/settings.component';
     LogoutComponent,
     HomeComponent,
     TestComponent,
-    NavComponent,
-    SettingsComponent
+    NavComponent
   ],
   imports: [
     BrowserModule,

@@ -12,7 +12,7 @@ export class UserPortfolioComponent implements OnInit {
   ngOnInit() {
   
   }
-
+  
   url:string = "http://localhost:8094/stockTransactions";
   username = localStorage.getItem("username");
 
