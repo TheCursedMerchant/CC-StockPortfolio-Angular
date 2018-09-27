@@ -1,15 +1,15 @@
 
 <div class="container">
-    <h2>Welcome</h2>
-    <div style = "justify-content: center; vertical-align: middle">    
-      <label style = "margin-right: 16px" >Username: </label>
+    <h2 style = "padding-top: 60px; padding-bottom: 40px">Welcome</h2>
+    <div>    
+      <label style = "margin-right: 16px" ><strong>Username:</strong></label>
       <input type="text" [(ngModel)] = "userN"/>
       <br/><br/>
-      <label>Password:</label>
+      <label><strong>Password:</strong></label>
       <input type="password" [(ngModel)] = "passW" style = "margin-left: 20px"/><br/><br/>
-      <button value="Login" (click) = "sendCredentials()" class="btn btn-secondary">Login</button><br>
+      <button value="Login" (click) = "sendCredentials()" class="btn btn-secondary"><strong>Login</strong></button><br>
       <!-- <p> the name is {{user.name}}</p> -->
     </div>
   </div>
   <br>
-  <a routerLink="../new" style="text-align: right">New user? Create an account here</a>
+  <a routerLink="../new" style="text-align: right" color = "#041126"><strong> New user? Create an account here </strong></a>
