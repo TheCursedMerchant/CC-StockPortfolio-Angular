@@ -12,8 +12,8 @@
           <th>Opening</th>
         </tr>
         <tr *ngFor = "let q of listQuotes">
-          <td><a href = "company" (click) = "getSymbol(q.symbol)">{{q.symbol}}</a></td>
-          <td><a href = "company" (click) = "getSymbol(q.symbol)">{{q.companyName}}</a></td>
+          <td><a routerLink = "../company" (click) = "getSymbol(q.symbol)">{{q.symbol}}</a></td>
+          <td><a routerLink = "../company" (click) = "getSymbol(q.symbol)">{{q.companyName}}</a></td>
           <td><a>{{q.open}}</a></td>
         </tr>
       </table>

@@ -26,6 +26,10 @@ export class TransactionHistoryComponent implements OnInit {
   soldTransactions:Transaction[] = [];
 
 
+  getSymbol(sym: string) {
+    localStorage.setItem("symbol", sym);
+  }
+
   fillPortfolioFromDB(): void{
     this.transactionService.getDatabaseTransactions("http://localhost:8094/stockTransactions").subscribe(
       objects =>{ 
