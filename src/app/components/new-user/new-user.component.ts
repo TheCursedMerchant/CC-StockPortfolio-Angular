@@ -29,16 +29,8 @@ export class NewUserComponent implements OnInit {
       name: this.newName
     };
 
-    // console.log(newUser);
-    // for(let u in newUser){
-    //   console.log(u);
-    // }
-
     let url = "http://localhost:8094/users";
-
-    this.userService.postUser(url, newUser).then( user =>{
-      console.log(user);
-    });
+    this.userService.postUser(url, newUser);
   }
 
 }

@@ -46,12 +46,14 @@ export class CredentialsService {
 postUser(url: string, user: User) : Promise<User> {
   const headers = new HttpHeaders().set("content-type", "application/json");
   //must be named "headers" else problems during return
+  console.log("User before body: " + user);
   let body = 
   { 
     userN: user.userN,
     passW: user.passW,
     name: user.name,
   };
+  console.log("User body: " + body);
   
   return this.httpClient.post<User>(url, body, {headers}).toPromise();
 }
