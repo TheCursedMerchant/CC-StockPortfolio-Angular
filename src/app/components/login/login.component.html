@@ -1,14 +1,15 @@
 
 <div class="container">
     <h2>Welcome</h2>
-    <div>    
-      <label>Username: </label>
-      <input type="text" [(ngModel)] = "userN" />
+    <div style = "justify-content: center; vertical-align: middle">    
+      <label style = "margin-right: 16px" >Username: </label>
+      <input type="text" [(ngModel)] = "userN"/>
       <br/><br/>
-      <label>Password: </label>
-      <input type="password" [(ngModel)] = "passW"/><br/><br/>
-      <button value="Login" (click) = "sendCredentials()" class="btn btn-secondary">Login</button>
+      <label>Password:</label>
+      <input type="password" [(ngModel)] = "passW" style = "margin-left: 20px"/><br/><br/>
+      <button value="Login" (click) = "sendCredentials()" class="btn btn-secondary">Login</button><br>
       <!-- <p> the name is {{user.name}}</p> -->
     </div>
   </div>
+  <br>
   <a routerLink="../new" style="text-align: right">New user? Create an account here</a>

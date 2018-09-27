@@ -29,6 +29,11 @@ export class UserPortfolioComponent implements OnInit {
   form:number[] = [];
   submitButtonDisabled = true;    //change to false when all the inputs are okay, then enable submit button
 
+
+  getSymbol(sym: string) {
+    localStorage.setItem("symbol", sym);
+  }
+
   validateInput(){
     //(change)we can disable the submit button until it checks each item of the form and they are all valid.
     //so just loop through array and have them pass a check.

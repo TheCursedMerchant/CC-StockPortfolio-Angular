@@ -21,7 +21,7 @@
       <tr *ngFor = "let transaction of unsoldTransactions; let i = index">
                         <!-- use $ for interpolation-->
         <td>{{transaction.id}}</td>
-        <td><a routerLink="../company">{{transaction.symbol}}</a></td>
+        <td><a routerLink="../company" (click)= "getSymbol(transaction.symbol)">{{transaction.symbol}}</a></td>
         <td>{{transaction.shares}}</td>
         <td>{{transaction.current}}</td>
         <td>{{transaction.opening}}</td>

@@ -24,7 +24,11 @@ export class TransactionHistoryComponent implements OnInit {
   url:string = "http://localhost:8094/stockTransactions";
   username = localStorage.getItem("username");
   soldTransactions:Transaction[] = [];
+  zeroVariable: number = 0;
 
+  getSymbol(sym: string) {
+    localStorage.setItem("symbol", sym);
+  }
 
   fillPortfolioFromDB(): void{
     this.transactionService.getDatabaseTransactions("http://localhost:8094/stockTransactions").subscribe(

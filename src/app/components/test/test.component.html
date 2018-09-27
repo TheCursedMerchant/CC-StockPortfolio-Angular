@@ -9,16 +9,18 @@
         <tr>
           <th>Symbol</th>
           <th>Company Name</th>
+          <th>Current</th>
           <th>Opening</th>
         </tr>
         <tr *ngFor = "let q of listQuotes">
-          <td><a href = "company" (click) = "getSymbol(q.symbol)">{{q.symbol}}</a></td>
-          <td><a href = "company" (click) = "getSymbol(q.symbol)">{{q.companyName}}</a></td>
-          <td><a>{{q.open}}</a></td>
+          <td><a routerLink = "../company" (click) = "getSymbol(q.symbol)" color = "#25033f">{{q.symbol}}</a></td>
+          <td><a routerLink = "../company" (click) = "getSymbol(q.symbol)">{{q.companyName}}</a></td>
+          <td>{{q.latestPrice}}</td>
+          <td>{{q.open}}</td>
         </tr>
       </table>
   </div>
   
-  <button name="back to the beginning" (click) = "backToZero()">First</button>
-  <button name = "getquotes" (click) = "getNextQuotes()">Next 10 >></button>
+  <button class = "btn btn-secondary" name="back to the beginning" (click) = "backToZero()">First</button>
+  <button class = "btn btn-secondary" name = "getquotes" (click) = "getNextQuotes()" style = "margin-left: 20px">Next 10 >></button>
 </div>
