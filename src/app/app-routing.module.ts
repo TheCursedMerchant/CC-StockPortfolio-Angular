@@ -8,6 +8,7 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { HomeComponent } from './components/home/home.component';
 import { TestComponent } from './components/test/test.component';
 import { StockCompanyComponent } from './components/stock-company/stock-company.component';
+import { NewUserComponent } from './components/new-user/new-user.component';
 
 const routes: Routes = [
  {path: 'login', component: LoginComponent },
@@ -16,7 +17,8 @@ const routes: Routes = [
  {path: 'logout', component: LogoutComponent},
  {path: 'home', component: HomeComponent},
  {path: 'directory', component: TestComponent},
- {path: 'company', component: StockCompanyComponent}
+ {path: 'company', component: StockCompanyComponent},
+ {path: 'new', component: NewUserComponent}
 ];
 
 @NgModule({

@@ -12,7 +12,10 @@ import { Transaction } from '../../models/transaction';
 export class UserPortfolioComponent implements OnInit {
   url:string = "http://localhost:8094/stockTransactions";
   username = localStorage.getItem("username");
-  transactions:Transaction[] = [];
+  unsoldTransactions:Transaction[] = [];
+  soldTransactions:Transaction[] = [];
+  form:number[] = [];
+  submitButtonDisabled = true;    //change to false when all the inputs are okay, then enable submit button
 
   constructor(private localStorageService:LocalStorageService,
               private transactionService:TransactionServiceService) { }
@@ -27,16 +30,53 @@ export class UserPortfolioComponent implements OnInit {
   fillPortfolioFromDB(): void{
     this.transactionService.getDatabaseTransactions("http://localhost:8094/stockTransactions").subscribe(
       objects =>{ 
-          for(let obj of objects)       //use the session to show the profile specific to the user
+          // console.log(objects);
+          for(let obj of objects) {      //use the session to show the profile specific to the user
               if(obj.user.userN === this.localStorageService.getSaved("username"))
-                  this.transactions.push( new Transaction(obj.id, obj.stockSymbol, obj.numShares, 
+                if(obj.status === "UNSOLD")
+                  this.unsoldTransactions.push( new Transaction(obj.id, obj.stockSymbol, obj.numShares, 
                                           obj.currentPrice, obj.openPrice, obj.boughtFor, obj.sellingFor, 
-                                          obj.totalReturn, obj.date, obj.user, obj.stockName )); 
+                                          obj.totalReturn, obj.date, obj.user, obj.stockName, obj.status ));
+                else //"SOLD"
+                  this.soldTransactions.push( new Transaction(obj.id, obj.stockSymbol, obj.numShares, 
+                                          obj.currentPrice, obj.openPrice, obj.boughtFor, obj.sellingFor, 
+                                          obj.totalReturn, obj.date, obj.user, obj.stockName, obj.status ));
+            }
       }
     );
   }
 
-  
+  validateInput(){
+    //(change)we can disable the submit button until it checks each item of the form and they are all valid.
+    //so just loop through array and have them pass a check.
+      //if undefined, ignore it. 
+      //If you see something negative or greater than # shares, set boolean flag to false
+      //if flag is false, submit button will be 
+      //change variable to yes, button is enabled.
+    //(click) if variable is yes, button is enabled. if not. do nothing, rtn
+      //otherwise, its enabled and do everything safely. 
+      //change windows with a reload and give notification of what has been changed??
+    let atLeastOne:boolean = false;           //need both these flags to be true to enable button
+    let validNumberToSell:boolean = true;
+    console.log("list begin: ");
+    for(let i=0; i < this.form.length; i++){
+      console.log(this.form[i]);
+      if(this.form[i]){ //has some value that isn't falsy
+          atLeastOne = true;
+        //check if number is > 0 but < transactions[i].shares
+        if(this.form[i] < 0 || this.form[i] > this.unsoldTransactions[i].shares) 
+        {   //send an alert! and set flag
+          validNumberToSell = false;
+          //alert! number must be between 0 and this.unsoldTransactions[i].shares
+        }    
+      }
+    }
+    //check both flags true or not, then set property
+    if(atLeastOne === true && validNumberToSell === true)
+      this.submitButtonDisabled = false;
+    else  
+      this.submitButtonDisabled = true;
+  } //validateInput()
   
 
 

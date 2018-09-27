@@ -16,6 +16,7 @@ import { HttpClientModule } from '../../node_modules/@angular/common/http';
 import { TestComponent } from './components/test/test.component';
 import { NavComponent } from './components/nav/nav.component';
 import { TransactionServiceService } from './services/transaction-service.service';
+import { NewUserComponent } from './components/new-user/new-user.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { TransactionServiceService } from './services/transaction-service.servic
     LogoutComponent,
     HomeComponent,
     TestComponent,
-    NavComponent
+    NavComponent,
+    NewUserComponent
   ],
   imports: [
     BrowserModule,

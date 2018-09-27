@@ -6,5 +6,7 @@
       <a routerLink="/portfolio" class="nav-link" (click) = "sessionCheck()">Portfolio</a>
       <a routerLink="/settings" class="nav-link" (click) = "sessionCheck()">Change Settings</a>
       <a routerLink="/logout" class="nav-link" (click) = "invalidateSession()">Logout</a>
+      <a routerLink="/settings" class="nav-link">{{username | titlecase}}</a>
     </nav>
+  <p style="color:red">idk how to move the last link to be on the right side instead of clumped together</p>
 </div>
