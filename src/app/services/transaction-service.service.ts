@@ -22,8 +22,8 @@ export class TransactionServiceService {
   }
 
   //delete will return parameters id...
-  deleteDatabaseTransaction(url:string): void{
+  deleteDatabaseTransaction(url:string): Observable<any>{
     const headers:HttpHeaders = new HttpHeaders().set('content-type', 'application/json');
-    this.httpClient.delete(url,{headers});
+    return this.httpClient.delete(url,{headers});
   }
 }

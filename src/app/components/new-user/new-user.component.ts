@@ -22,22 +22,23 @@ export class NewUserComponent implements OnInit {
 
   createUser(){
 
-    let newUser: User = {
+    let newUser:User = {
       userId: null,
       userN: this.newuserN,
       passW: this.pass,
       name: this.newName
     };
 
-    console.log(newUser);
-    for(let u in newUser){
-      console.log(u);
-    }
+    // console.log(newUser);
+    // for(let u in newUser){
+    //   console.log(u);
+    // }
 
     let url = "http://localhost:8094/users";
-    console.log(this.newName);
 
-    this.userService.postUser(url, newUser);
+    this.userService.postUser(url, newUser).then( user =>{
+      console.log(user);
+    });
   }
 
 }
