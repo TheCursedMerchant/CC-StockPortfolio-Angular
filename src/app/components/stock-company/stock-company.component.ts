@@ -53,6 +53,6 @@ export class StockCompanyComponent implements OnInit {
     opening: undefined
     }
     this.quoteService.createQuote(url, newTransaction);
-    //window.location.replace("portfolio");
+    window.location.replace("portfolio");
   }
 }

@@ -1,3 +1,14 @@
-<p>
-  new-user works!
-</p>
+<div class="container">
+    <h2>We're Happy to have you join us! Start Building your portfolio TODAY!</h2>
+    <div>    
+      <label>Full Name</label>
+      <input required type = "text" [(ngModel)] = "newName"/>
+      <label>Username: </label>
+      <input type="text" [(ngModel)] = "username" />
+      <br/><br/>
+      <label>Password: </label>
+      <input type="password" [(ngModel)] = "password"/><br/><br/>
+      <button value="user button" (click) = "createUser()" class="btn btn-secondary">Sign Up!</button>
+    </div>
+  </div>
+  <a routerLink="../new" style="text-align: right">New user? Create an account here</a>

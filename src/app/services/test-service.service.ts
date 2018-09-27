@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '../../../node_modules/@angular/common/h
 import { Observable } from '../../../node_modules/rxjs';
 import { Quote } from '../../../node_modules/@angular/compiler';
 import { Transaction } from '../models/transaction';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -56,5 +57,18 @@ export class TestServiceService {
       status: "UNSOLD"
       };
     return this.http.post<Transaction>(url, body, {headers}).toPromise();
+  }
+
+  createUser(url: string, user:User):Promise<User>{
+    const headers = new HttpHeaders({'Access-Control-Allow-Origin':'*'}).set('content-type','application/json');
+    var body = 
+    {
+      user: {
+        userN: user.userN,
+        passW: user.passW,
+        name: user.name
+      }
+    };
+    return this.http.post<User>(url, body, {headers}).toPromise();
   }
 }
