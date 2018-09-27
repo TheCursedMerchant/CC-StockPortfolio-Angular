@@ -10,7 +10,7 @@ export class Transaction{
     user:User;
     companyName:string;
     status:string;
-
+    //API members 
     current:number;
     opening:number;
     

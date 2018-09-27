@@ -5,10 +5,10 @@
   <h2>{{mainQuote.symbol}}</h2>
     <label>Enter the number of stocks to buy: </label>
     <input required type="number" name="numStocks" class = "form-control" 
-    style = "margin-left: 420px; max-width: 240px;" ([ngModel]) = "shares"> 
+    style = "margin-left: 420px; max-width: 240px;" [(ngModel)] = "shares"> 
     <br>
   <input type="submit" value="Purchase" class = "btn btn-success" (click) = "buyShares()">
-  <br>
+  <br><br>
   <a href="#">Company's page (get from api)</a><br>
   <a href="#">Company's stock news (get from api)</a>
 </div>

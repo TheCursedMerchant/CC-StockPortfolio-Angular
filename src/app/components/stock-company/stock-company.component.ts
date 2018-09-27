@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LocalStorageService } from '../../services/localstorage.service';
 import { TestServiceService } from '../../services/test-service.service';
 import { QuoteClass } from '../../models/quoteClass';
+import { Transaction } from '../../models/transaction';
 
 @Component({
   selector: 'app-stock-company',
@@ -23,10 +24,35 @@ export class StockCompanyComponent implements OnInit {
   }
 
   getQuote(newSymbol: string): void{
-    let url = "https://api.iextrading.com/1.0/stock/" + newSymbol + "/quote?filter=symbol,open,companyName,companyur";
+    let url = "https://api.iextrading.com/1.0/stock/" + newSymbol + "/quote?filter=symbol,open, latestPrice, companyName";
     this.quoteService.getQuoteById(url).then(quote=>{
       this.mainQuote = quote;
     });
-    console.log(this.mainQuote);
+    console.log(this.mainQuote.companyName);
+  }
+
+  buyShares(){
+    let url = "http://localHost:8094/stockTransactions";
+    let date = new Date();
+    let newTransaction: Transaction = {
+    id: undefined,
+    user: {
+        userId: JSON.parse(localStorage.getItem("userId")),
+        userN: localStorage.getItem("username"),
+        passW: localStorage.getItem("password"),
+        name: localStorage.getItem("name")
+    },
+    symbol: this.mainQuote.symbol,
+    shares: this.shares,
+    boughtFor: this.mainQuote.latestPrice,
+    sellingFor: 0,
+    date: date,
+    companyName: this.mainQuote.companyName,
+    status: undefined,
+    current: undefined,
+    opening: undefined
+    }
+    this.quoteService.createQuote(url, newTransaction);
+    //window.location.replace("portfolio");
   }
 }

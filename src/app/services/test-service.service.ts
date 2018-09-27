@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '../../../node_modules/@angular/common/http';
+import { HttpClient, HttpHeaders } from '../../../node_modules/@angular/common/http';
 import { Observable } from '../../../node_modules/rxjs';
 import { Quote } from '../../../node_modules/@angular/compiler';
+import { Transaction } from '../models/transaction';
 
 @Injectable({
   providedIn: 'root'
@@ -35,7 +36,25 @@ export class TestServiceService {
     return this.http.get<any>(url).toPromise();          //cuz we will have to do multiple get requests
   }
 
-  /*createQuote(url: string):Promise<any>{
-    return this.http.post<any>(url, ).toPromise();
-  }*/
+  createQuote(url: string, transaction: Transaction):Promise<Transaction>{
+    const headers = new HttpHeaders({'Access-Control-Allow-Origin':'*'}).set('content-type','application/json');
+    var body = 
+    {
+      id: null,
+      user: {
+        userId: transaction.user.userId,
+        userN: transaction.user.userN,
+        passW: transaction.user.passW,
+        name: transaction.user.name
+      },
+      stockSymbol: transaction.symbol,
+      numShares: transaction.shares,
+      boughtFor: transaction.boughtFor,
+      sellingFor: 0,
+      date: transaction.date,
+      stockName:transaction.companyName,
+      status: "UNSOLD"
+      };
+    return this.http.post<Transaction>(url, body, {headers}).toPromise();
+  }
 }
