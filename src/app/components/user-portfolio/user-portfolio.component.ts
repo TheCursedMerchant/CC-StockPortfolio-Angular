@@ -10,12 +10,6 @@ import { Transaction } from '../../models/transaction';
   styleUrls: ['./user-portfolio.component.css']
 })
 export class UserPortfolioComponent implements OnInit {
-  url:string = "http://localhost:8094/stockTransactions";
-  username = localStorage.getItem("username");
-  unsoldTransactions:Transaction[] = [];
-  soldTransactions:Transaction[] = [];
-  form:number[] = [];
-  submitButtonDisabled = true;    //change to false when all the inputs are okay, then enable submit button
 
   constructor(private localStorageService:LocalStorageService,
               private transactionService:TransactionServiceService) { }
@@ -27,24 +21,13 @@ export class UserPortfolioComponent implements OnInit {
     this.fillPortfolioFromDB();
   }
 
-  fillPortfolioFromDB(): void{
-    this.transactionService.getDatabaseTransactions("http://localhost:8094/stockTransactions").subscribe(
-      objects =>{ 
-          // console.log(objects);
-          for(let obj of objects) {      //use the session to show the profile specific to the user
-              if(obj.user.userN === this.localStorageService.getSaved("username"))
-                if(obj.status === "UNSOLD")
-                  this.unsoldTransactions.push( new Transaction(obj.id, obj.stockSymbol, obj.numShares, 
-                                          obj.currentPrice, obj.openPrice, obj.boughtFor, obj.sellingFor, 
-                                          obj.totalReturn, obj.date, obj.user, obj.stockName, obj.status ));
-                else //"SOLD"
-                  this.soldTransactions.push( new Transaction(obj.id, obj.stockSymbol, obj.numShares, 
-                                          obj.currentPrice, obj.openPrice, obj.boughtFor, obj.sellingFor, 
-                                          obj.totalReturn, obj.date, obj.user, obj.stockName, obj.status ));
-            }
-      }
-    );
-  }
+  //variables memebres
+  url:string = "http://localhost:8094/stockTransactions";
+  username = localStorage.getItem("username");
+  unsoldTransactions:Transaction[] = [];
+  soldTransactions:Transaction[] = [];
+  form:number[] = [];
+  submitButtonDisabled = true;    //change to false when all the inputs are okay, then enable submit button
 
   validateInput(){
     //(change)we can disable the submit button until it checks each item of the form and they are all valid.
@@ -68,6 +51,7 @@ export class UserPortfolioComponent implements OnInit {
         {   //send an alert! and set flag
           validNumberToSell = false;
           //alert! number must be between 0 and this.unsoldTransactions[i].shares
+          //FIXME
         }    
       }
     }
@@ -78,7 +62,35 @@ export class UserPortfolioComponent implements OnInit {
       this.submitButtonDisabled = true;
   } //validateInput()
   
+  sell(){
+    //for every transaction that is being requested
+      //we are editing the transaction. If no more stocks(shares), then do DELETE
+      //else do PUT and make POST transaction that is "SOLD"
+    for(let i=0; i < this.form.length; i++)
+    {
+      
+      // this.transactionService.putDatabaseTransaction(url)
+      
+    }
+    //change the page back to this one...reload i guess
+  } //sell()
 
-
-  
+  fillPortfolioFromDB(): void{
+    this.transactionService.getDatabaseTransactions("http://localhost:8094/stockTransactions").subscribe(
+      objects =>{ 
+          // console.log(objects);
+          for(let obj of objects) {      //use the session to show the profile specific to the user
+              if(obj.user.userN === this.localStorageService.getSaved("username"))
+                if(obj.status === "UNSOLD")
+                  this.unsoldTransactions.push( new Transaction(obj.id, obj.stockSymbol, obj.numShares, 
+                                          obj.currentPrice, obj.openPrice, obj.boughtFor, obj.sellingFor, 
+                                          obj.totalReturn, obj.date, obj.user, obj.stockName, obj.status ));
+                else //"SOLD"
+                  this.soldTransactions.push( new Transaction(obj.id, obj.stockSymbol, obj.numShares, 
+                                          obj.currentPrice, obj.openPrice, obj.boughtFor, obj.sellingFor, 
+                                          obj.totalReturn, obj.date, obj.user, obj.stockName, obj.status ));
+            }
+      }
+    );
+  } //fillPortfolioFromDB()
 }
