@@ -12,9 +12,10 @@ export class Transaction{
     date:Date;
     user:User;
     companyName:string;
+    status:string;
     
     constructor(id, symbol, shares, current, opening, boughtFor, sellingFor, totalReturn, date,
-              user, companyName) {
+              user, companyName, status) {
         this['id'] = id;
         this.symbol = symbol;
         this.current = current;
@@ -26,5 +27,6 @@ export class Transaction{
         this.date = date;
         this.user = user;
         this.companyName = companyName;  
+        this.status = status;
     }
 }

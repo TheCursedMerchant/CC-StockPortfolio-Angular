@@ -1,10 +1,9 @@
 <div class="container">
   <app-nav></app-nav>
   <h2>{{username | titlecase}}'s Stock Portfolio</h2>
-  <div *ngIf="transactions.length > 0; else NoStocks">
+  <div *ngIf="unsoldTransactions.length > 0; else NoStocks">
     <table class="table">
       <tr>
-        <th>Sell</th> 
         <th>Transaction ID</th>
         <th>Sticker Symbol</th>
         <th>Shares</th>
@@ -14,11 +13,13 @@
         <th>Selling For</th>
         <th>Total Return %</th>
         <th>Date</th>
+        <th>Sell</th> 
+        <!-- <th>status</th> -->
         <!-- <th>User(temp)</th> -->
       </tr>
-      <tr *ngFor = "let transaction of transactions">
+      <!-- https://blog.angular-university.io/angular-2-ngfor/ -->
+      <tr *ngFor = "let transaction of unsoldTransactions; let i = index">
                         <!-- use $ for interpolation-->
-        <td><input type="number" name="numSell" style="max-width: 50px" class="form-control"></td>
         <td>{{transaction.id}}</td>
         <td>{{transaction.symbol}}</td>
         <td>{{transaction.shares}}</td>
@@ -28,13 +29,31 @@
         <td>{{transaction.sellingFor}}</td>
         <td>{{transaction.totalReturn}}</td>
         <td>{{transaction.date | date}}</td>
+        <td><input type="number" [(ngModel)] = "form[i]"
+          style="max-width: 60px" class="form-control" (keyup) = "validateInput()">
+        </td>
+        
+        <!-- <td>{{transaction.status}}</td> -->
         <!-- <td>{{transaction.user.userN}}</td> -->
       </tr>
     </table>
-    <button value="Sell Stocks" class="btn btn-secondary" style="text-align: right">Sell Stocks</button>
+    <!-- type="submit" i think makes you able to hit enter to submit -->
+    <div *ngIf = "submitButtonDisabled; else enabledSubmit">
+      <button type="submit" value="Sell Stocks" (click)="sell()" class="btn btn-secondary" 
+          style="text-align: right" disabled>
+        Sell Stocks
+      </button>
+    </div>
+    <ng-template #enabledSubmit>
+      <button type="submit" value="Sell Stocks" (click)="sell()" class="btn btn-secondary" 
+          style="text-align: right">
+        Sell Stocks
+      </button>
+    </ng-template>
+
   </div>
   <ng-template #NoStocks>
-    Sorry, but it seems you have no stocks to sell at the moment. Click <a routerLink="..directory">here</a>
+    Sorry, but it seems you have no stocks to sell at the moment. Click <a routerLink="../directory">here</a>
     to see a list of stocks.
   </ng-template>
 
