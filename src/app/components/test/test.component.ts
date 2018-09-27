@@ -67,9 +67,10 @@ export class TestComponent implements OnInit {
     this.condition = true;
   }
 
-  getSymbol(sym) {
+  getSymbol(sym: string) {
     window.location.replace("company")
     localStorage.setItem("symbol", sym);
+    console.log(localStorage.getItem("symbol"));
   }
 }
 

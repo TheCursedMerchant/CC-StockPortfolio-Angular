@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '../../../node_modules/@angular/common/http';
 import { Observable } from '../../../node_modules/rxjs';
+import { Quote } from '../../../node_modules/@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -25,8 +26,16 @@ export class TestServiceService {
   getQuotes(url: string):Observable<any[]>{    //this one just has url param
     return this.http.get<any[]>(url);          //cuz we will have to do multiple get requests
   }
+
+  getQuoteById(url: string):Promise<any>{
+    return this.http.get<any>(url).toPromise();
+  }
   
   getQuoteCirey(url: string):Promise<any>{    //this one just has url param
     return this.http.get<any>(url).toPromise();          //cuz we will have to do multiple get requests
   }
+
+  /*createQuote(url: string):Promise<any>{
+    return this.http.post<any>(url, ).toPromise();
+  }*/
 }
