@@ -8,7 +8,8 @@
       <br/>
       <label color = "#25033f"><strong>Password:</strong></label><br>
       <input type="password" [(ngModel)] = "pass"/><br/><br/>
-      <button value="user button" (click) = "createUser()" class="btn btn-success">Sign Up!</button><br><br>
+      <button routerLink = "../login" value="user button" (click) = "createUser()" class="btn btn-success">Sign Up!</button><br><br>
     </div>
   </div>
-  <a routerLink="../new" style="text-align: right; color: #000000;"><strong>Already have an account? Sign in!</strong></a>
+  
+  <a routerLink="../login" style="text-align: right; color: #000000;"><strong>Already have an account? Sign in!</strong></a>
