@@ -22,17 +22,12 @@ export class NewUserComponent implements OnInit {
 
   createUser(){
 
-    let newUser: User = {
-      userId: 1,
+    let newUser:User = {
+      userId: null,
       userN: this.newuserN,
       passW: this.pass,
       name: this.newName
     };
-
-    console.log(newUser);
-    for(let u in newUser){
-      console.log(u);
-    }
 
     let url = "http://localhost:8094/users";
     console.log(newUser);

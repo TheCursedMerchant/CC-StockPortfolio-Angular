@@ -94,13 +94,13 @@ export class UserPortfolioComponent implements OnInit {
           trans.numShares = sharesLeft; //updateTrans
           this.transactionService.putDatabaseTransaction(this.url, trans).subscribe(
             obj =>{
-              console.log(obj);
+              console.log("hey");
             }
           );
         }
 
         else {// delete trans
-          // this.transactionService.deleteDatabaseTransaction(this.url+"/"+transaction.id);
+          this.transactionService.deleteDatabaseTransaction(this.url+"/"+transaction.id).subscribe();
         }
         let newSold ={
           user : transaction.user,
@@ -115,7 +115,7 @@ export class UserPortfolioComponent implements OnInit {
       
         this.transactionService.postDatabaseTransaction(this.url, newSold).subscribe(
           newSoldTransaction => {
-            console.log(newSoldTransaction);   
+            console.log("there");   
           }
         );
       }
