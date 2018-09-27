@@ -68,7 +68,8 @@ export class UserPortfolioComponent implements OnInit {
       //else do PUT and make POST transaction that is "SOLD"
     for(let i=0; i < this.form.length; i++)
     {
-      
+      if(this.form[i]) //if truthy value
+        this.unsoldTransactions[i] 
       // this.transactionService.putDatabaseTransaction(url)
       
     }
