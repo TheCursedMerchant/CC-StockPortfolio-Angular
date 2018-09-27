@@ -17,6 +17,7 @@ import { TestComponent } from './components/test/test.component';
 import { NavComponent } from './components/nav/nav.component';
 import { TransactionServiceService } from './services/transaction-service.service';
 import { NewUserComponent } from './components/new-user/new-user.component';
+import { TransactionHistoryComponent } from './components/transaction-history/transaction-history.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { NewUserComponent } from './components/new-user/new-user.component';
     HomeComponent,
     TestComponent,
     NavComponent,
-    NewUserComponent
+    NewUserComponent,
+    TransactionHistoryComponent
   ],
   imports: [
     BrowserModule,
