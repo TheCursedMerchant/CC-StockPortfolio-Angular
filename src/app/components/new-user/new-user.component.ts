@@ -23,7 +23,7 @@ export class NewUserComponent implements OnInit {
   createUser(){
 
     let newUser: User = {
-      userId: null,
+      userId: 1,
       userN: this.newuserN,
       passW: this.pass,
       name: this.newName
@@ -35,7 +35,7 @@ export class NewUserComponent implements OnInit {
     }
 
     let url = "http://localhost:8094/users";
-    console.log(this.newName);
+    console.log(newUser);
 
     this.userService.postUser(url, newUser);
   }
