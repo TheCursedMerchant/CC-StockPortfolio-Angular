@@ -12,8 +12,8 @@ export class NewUserComponent implements OnInit {
 
   
   newName: string;
-  username: string;
-  password: string;
+  newuserN: string;
+  pass: string;
 
   constructor(private userService: CredentialsService) { }
 
@@ -21,13 +21,21 @@ export class NewUserComponent implements OnInit {
   }
 
   createUser(){
-    let newUser: User;
-    let url = "http://localhost:8094/user";
+
+    let newUser: User = {
+      userId: null,
+      userN: this.newuserN,
+      passW: this.pass,
+      name: this.newName
+    };
+
+    console.log(newUser);
+    for(let u in newUser){
+      console.log(u);
+    }
+
+    let url = "http://localhost:8094/users";
     console.log(this.newName);
-    newUser.name = this.newName;
-    newUser.userN = this.username;
-    newUser.passW = this.password;
-    newUser.userId = null;
 
     this.userService.postUser(url, newUser);
   }

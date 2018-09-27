@@ -59,16 +59,4 @@ export class TestServiceService {
     return this.http.post<Transaction>(url, body, {headers}).toPromise();
   }
 
-  createUser(url: string, user:User):Promise<User>{
-    const headers = new HttpHeaders({'Access-Control-Allow-Origin':'*'}).set('content-type','application/json');
-    var body = 
-    {
-      user: {
-        userN: user.userN,
-        passW: user.passW,
-        name: user.name
-      }
-    };
-    return this.http.post<User>(url, body, {headers}).toPromise();
-  }
 }
