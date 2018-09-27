@@ -10,8 +10,8 @@ export class HomeComponent implements OnInit {
   constructor(public localStorageService:LocalStorageService) { }
 
   ngOnInit() {
-    if(this.localStorageService.getSaved("username") === null)
-      window.location.replace("login");
+    // if(this.localStorageService.getSaved("username") === null)
+    //   window.location.replace("login");
   }
 
 }
