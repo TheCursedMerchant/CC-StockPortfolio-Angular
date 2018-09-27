@@ -13,8 +13,8 @@ export class CredentialsService {
   constructor(private httpClient: HttpClient) {};
 
   //Url's we need to send 
-  loginUrl: string = "http://localhost:8094/login";
-  settingsUrl: string = "http://localhost:8094/users";
+  loginUrl: string = "http://ccstockportfoliop2-env.hre7kq2up7.us-east-1.elasticbeanstalk.com/login";
+  settingsUrl: string = "http://ccstockportfoliop2-env.hre7kq2up7.us-east-1.elasticbeanstalk.com/users";
 
   //Send our entered username and password to the DB
   postCredentials(usr: User): Promise<User> {

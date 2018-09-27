@@ -29,7 +29,7 @@ export class NewUserComponent implements OnInit {
       name: this.newName
     };
 
-    let url = "http://localhost:8094/users";
+    let url = "http://ccstockportfoliop2-env.hre7kq2up7.us-east-1.elasticbeanstalk.com/users";
     this.userService.postUser(url, newUser);
   }
 

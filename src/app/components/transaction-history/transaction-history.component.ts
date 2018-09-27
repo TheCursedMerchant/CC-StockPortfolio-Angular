@@ -21,7 +21,7 @@ export class TransactionHistoryComponent implements OnInit {
   }
 
   //variables memebres
-  url:string = "http://localhost:8094/stockTransactions";
+  url:string = "http://ccstockportfoliop2-env.hre7kq2up7.us-east-1.elasticbeanstalk.com/stockTransactions";
   username = localStorage.getItem("username");
   soldTransactions:Transaction[] = [];
   zeroVariable: number = 0;
@@ -31,7 +31,7 @@ export class TransactionHistoryComponent implements OnInit {
   }
 
   fillPortfolioFromDB(): void{
-    this.transactionService.getDatabaseTransactions("http://localhost:8094/stockTransactions").subscribe(
+    this.transactionService.getDatabaseTransactions("http://ccstockportfoliop2-env.hre7kq2up7.us-east-1.elasticbeanstalk.com/stockTransactions").subscribe(
       objects =>{ 
           // console.log(objects);
           for(let obj of objects) {      //use the session to show the profile specific to the user

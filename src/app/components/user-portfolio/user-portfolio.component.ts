@@ -130,7 +130,7 @@ export class UserPortfolioComponent implements OnInit {
   } //sell()
 
   fillPortfolioFromDB(): void{
-    this.transactionService.getDatabaseTransactions("http://localhost:8094/stockTransactions").subscribe(
+    this.transactionService.getDatabaseTransactions("http://ccstockportfoliop2-env.hre7kq2up7.us-east-1.elasticbeanstalk.com/stockTransactions").subscribe(
       objects =>{ 
           // console.log(objects);
           for(let obj of objects) {      //use the session to show the profile specific to the user
