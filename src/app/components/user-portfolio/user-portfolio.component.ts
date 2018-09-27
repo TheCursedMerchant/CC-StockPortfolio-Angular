@@ -69,11 +69,32 @@ export class UserPortfolioComponent implements OnInit {
     for(let i=0; i < this.form.length; i++)
     {
       if(this.form[i]) //if truthy value
-        this.unsoldTransactions[i] 
-      // this.transactionService.putDatabaseTransaction(url)
-      
-    }
-    //change the page back to this one...reload i guess
+      {
+        let sharesLeft = this.unsoldTransactions[i].shares - this.form[i];
+        let transaction:Transaction = this.unsoldTransactions[i];  //create sold tran
+
+        if(sharesLeft > 0) //update trans
+        {
+          this.unsoldTransactions[i].shares = sharesLeft; //updateTrans
+          let obj = this.unsoldTransactions[i];
+          this.transactionService.putDatabaseTransaction(this.url, this.unsoldTransactions[i]);
+        }
+
+        else // delete trans
+          this.transactionService.deleteDatabaseTransaction(this.url+"/"+transaction.id);
+
+        console.log(this.unsoldTransactions.length);
+        console.log("i: "+i);
+        console.log("transaction: "+this.unsoldTransactions[0]);
+        // then create sold tran
+        transaction.sellingFor = this.soldTransactions[i].current;
+        transaction.shares = this.form[i];
+        transaction.status = "SOLD";
+        this.transactionService.postDatabaseTransaction(this.url, transaction);
+      }
+    } // for
+    //change the page back to this one...reload i guess. would be cool to add an alert that u changed those stocks
+    console.log("got here...now should change the page?");
   } //sell()
 
   fillPortfolioFromDB(): void{
@@ -84,14 +105,31 @@ export class UserPortfolioComponent implements OnInit {
               if(obj.user.userN === this.localStorageService.getSaved("username"))
                 if(obj.status === "UNSOLD")
                   this.unsoldTransactions.push( new Transaction(obj.id, obj.stockSymbol, obj.numShares, 
-                                          obj.currentPrice, obj.openPrice, obj.boughtFor, obj.sellingFor, 
-                                          obj.totalReturn, obj.date, obj.user, obj.stockName, obj.status ));
+                                          obj.boughtFor, obj.sellingFor, 
+                                          obj.date, obj.user, obj.stockName, obj.status ));
                 else //"SOLD"
                   this.soldTransactions.push( new Transaction(obj.id, obj.stockSymbol, obj.numShares, 
-                                          obj.currentPrice, obj.openPrice, obj.boughtFor, obj.sellingFor, 
-                                          obj.totalReturn, obj.date, obj.user, obj.stockName, obj.status ));
-            }
+                                          obj.boughtFor, obj.sellingFor, 
+                                          obj.date, obj.user, obj.stockName, obj.status ));
+          }
+      
+          this.fillPortfolioFromAPI();
       }
-    );
+    ); //subscribe
   } //fillPortfolioFromDB()
+
+  fillPortfolioFromAPI(){
+    console.log(this.unsoldTransactions.length);
+    for(let i = 0; i < this.unsoldTransactions.length; i++)
+    {
+      let url = "https://api.iextrading.com/1.0/stock/" 
+                + this.unsoldTransactions[i].symbol + "/quote?filter=open,latestPrice";
+      this.transactionService.getDatabaseTransactions(url).subscribe(
+        obj => {
+          this.unsoldTransactions[i].current = obj["latestPrice"];
+          this.unsoldTransactions[i].opening = obj["open"];
+        }
+      );
+    }
+  }
 }

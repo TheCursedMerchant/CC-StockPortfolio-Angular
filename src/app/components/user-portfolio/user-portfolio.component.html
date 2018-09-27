@@ -10,7 +10,7 @@
         <th>Current</th>
         <th>Opening</th>
         <th>Bought For</th>
-        <th>Selling For</th>
+        <!-- <th>Selling For</th> -->
         <th>Total Return %</th>
         <th>Date</th>
         <th>Sell</th> 
@@ -21,13 +21,14 @@
       <tr *ngFor = "let transaction of unsoldTransactions; let i = index">
                         <!-- use $ for interpolation-->
         <td>{{transaction.id}}</td>
-        <td>{{transaction.symbol}}</td>
+        <td><a routerLink="../company">{{transaction.symbol}}</a></td>
         <td>{{transaction.shares}}</td>
         <td>{{transaction.current}}</td>
         <td>{{transaction.opening}}</td>
         <td>{{transaction.boughtFor}}</td>
-        <td>{{transaction.sellingFor}}</td>
-        <td>{{transaction.totalReturn}}</td>
+        <!-- <td>{{transaction.sellingFor}}</td> -->
+              <!--the percent pipe is amazing....-->
+        <td>{{(transaction.current - transaction.boughtFor)/transaction.boughtFor | percent}}</td>
         <td>{{transaction.date | date}}</td>
         <td><input type="number" [(ngModel)] = "form[i]"
           style="max-width: 60px" class="form-control" (keyup) = "validateInput()">

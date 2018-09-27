@@ -4,26 +4,26 @@ export class Transaction{
     id:number;
     symbol:string;
     shares:number;
-    current:number;
-    opening:number;
     boughtFor:number;
     sellingFor:number;
-    totalReturn:number;
     date:Date;
     user:User;
     companyName:string;
     status:string;
+
+    current:number;
+    opening:number;
     
-    constructor(id, symbol, shares, current, opening, boughtFor, sellingFor, totalReturn, date,
+    constructor(id, symbol, shares, boughtFor, sellingFor, date,
               user, companyName, status) {
         this['id'] = id;
         this.symbol = symbol;
-        this.current = current;
+        // this.current = current;
         this.shares = shares; 
-        this.opening = opening;
+        // this.opening = opening;
         this.boughtFor = boughtFor;
         this.sellingFor = sellingFor;
-        this.totalReturn = totalReturn;
+        // this.totalReturn = totalReturn;
         this.date = date;
         this.user = user;
         this.companyName = companyName;  
