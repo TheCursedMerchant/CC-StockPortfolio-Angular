@@ -13,11 +13,12 @@ export class NavComponent implements OnInit {
   constructor(private localStorageService:LocalStorageService) { }
 
   ngOnInit() {
-    if(this.localStorageService.getSaved("username") === null){
-      this.username = null;
-      window.location.replace("login");
-    }
-    else //session available
+    // if(this.localStorageService.getSaved("username") === null){
+    //   this.username = null;
+    //   window.location.replace("login");
+    // }
+    // else //session available
+    if(this.localStorageService.getSaved("username"))
       this.username = this.localStorageService.getSaved("username");
   }
 
@@ -27,7 +28,10 @@ export class NavComponent implements OnInit {
   }
 
   invalidateSession(){
-    localStorage.clear();
+    if(this.localStorageService.getSaved("username"))
+      localStorage.clear();
+    else // no session yet
+      window.location.replace("login");
   }
 
 }

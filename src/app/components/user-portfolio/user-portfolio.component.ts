@@ -26,7 +26,6 @@ export class UserPortfolioComponent implements OnInit {
   url:string = "http://localhost:8094/stockTransactions";
   username = localStorage.getItem("username");
   unsoldTransactions:Transaction[] = [];
-  soldTransactions:Transaction[] = [];
   form:number[] = [];
   submitButtonDisabled = true;    //change to false when all the inputs are okay, then enable submit button
 
@@ -121,8 +120,8 @@ export class UserPortfolioComponent implements OnInit {
         );
       }
     } // for
-    //change the page back to this one...reload i guess. would be cool to add an alert that u changed those stocks
-    window.location.reload();
+    // //change the page back to this one...reload i guess. would be cool to add an alert that u changed those stocks
+    // window.location.replace();
   } //sell()
 
   fillPortfolioFromDB(): void{
@@ -133,10 +132,6 @@ export class UserPortfolioComponent implements OnInit {
               if(obj.user.userN === this.localStorageService.getSaved("username"))
                 if(obj.status === "UNSOLD")
                   this.unsoldTransactions.push( new Transaction(obj.id, obj.stockSymbol, obj.numShares, 
-                                          obj.boughtFor, obj.sellingFor, 
-                                          obj.date, obj.user, obj.stockName, obj.status ));
-                else //"SOLD"
-                  this.soldTransactions.push( new Transaction(obj.id, obj.stockSymbol, obj.numShares, 
                                           obj.boughtFor, obj.sellingFor, 
                                           obj.date, obj.user, obj.stockName, obj.status ));
           }

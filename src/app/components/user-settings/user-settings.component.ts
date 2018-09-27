@@ -32,5 +32,6 @@ export class UserSettingsComponent implements OnInit {
     this.userService.putFormData(this.userSettingsFormData).subscribe(usr => {
         this.user = usr;
       });
+    window.location.reload();
   }
 }

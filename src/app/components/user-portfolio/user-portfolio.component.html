@@ -40,13 +40,13 @@
     <!-- type="submit" i think makes you able to hit enter to submit -->
     <div *ngIf = "submitButtonDisabled; else enabledSubmit">
       <button type="submit" value="Sell Stocks" (click)="sell()" class="btn btn-secondary" 
-          style="text-align: right" disabled>
+          style="text-align: right" routerLink="../transaction-history" disabled>
         Sell Stocks
       </button>
     </div>
     <ng-template #enabledSubmit>
       <button type="submit" value="Sell Stocks" (click)="sell()" class="btn btn-secondary" 
-          style="text-align: right">
+          style="text-align: right" routerLink="../transaction-history">
         Sell Stocks
       </button>
     </ng-template>
