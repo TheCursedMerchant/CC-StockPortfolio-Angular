@@ -9,12 +9,14 @@
         <tr>
           <th>Symbol</th>
           <th>Company Name</th>
+          <th>Current</th>
           <th>Opening</th>
         </tr>
         <tr *ngFor = "let q of listQuotes">
           <td><a routerLink = "../company" (click) = "getSymbol(q.symbol)">{{q.symbol}}</a></td>
           <td><a routerLink = "../company" (click) = "getSymbol(q.symbol)">{{q.companyName}}</a></td>
-          <td><a>{{q.open}}</a></td>
+          <td>{{q.latestPrice}}</td>
+          <td>{{q.open}}</td>
         </tr>
       </table>
   </div>

@@ -58,7 +58,7 @@ export class TestComponent implements OnInit {
     for(let i = start; i < end; i++)
     {
       console.log(i);
-      let url = "https://api.iextrading.com/1.0/stock/" + this.symbols[i] + "/quote?filter=symbol,open,companyName";
+      let url = "https://api.iextrading.com/1.0/stock/" + this.symbols[i] + "/quote?filter=symbol,open,companyName,latestPrice";
       this.myService.getQuoteCirey(url)
       .then((currentQuote)=>{
         this.listQuotes[i - start] = currentQuote;

@@ -30,7 +30,7 @@
         <ng-template [ngIf]><td>{{(transaction.sellingFor - transaction.boughtFor) / transaction | percent}}</td></ng-template>
       -->
         <div *ngIf="((transaction.sellingFor - transaction.boughtFor) === 0 || (transaction.sellingFor - transaction.boughtFor)/transaction.boughtFor) < 0.01 &&((transaction.sellingFor - transaction.boughtFor)/transaction.boughtFor) > -0.01; else doCalculate">
-          <td style="text-align: right"> 0% </td>
+          <td>{{ zeroVariable | percent }}</td>
         </div>
         <ng-template #doCalculate><td>{{(transaction.sellingFor - transaction.boughtFor) / transaction.boughtFor | percent}}</td></ng-template>
 
