@@ -18,8 +18,8 @@ export class UserPortfolioComponent implements OnInit {
   ngOnInit() {
     if(this.localStorageService.getSaved("username") === null)
       window.location.replace("login");
-    //populate the table w/ fill table function
-    this.fillPortfolioFromDB();
+      //populate the table w/ fill table function
+      this.fillPortfolioFromDB();
   }
 
   //variables memebres
