@@ -7,7 +7,6 @@ import { LocalStorageService } from '../../services/localstorage.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
   constructor(public localStorageService:LocalStorageService) { }
 
   ngOnInit() {
