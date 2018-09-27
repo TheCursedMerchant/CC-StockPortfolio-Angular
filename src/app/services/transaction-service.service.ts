@@ -13,11 +13,11 @@ export class TransactionServiceService {
     return this.httpClient.get<any[]>(url);
   }
 
-  putDatabaseTransaction(url:string, transaction:Transaction): Observable<any>{
+  putDatabaseTransaction(url:string, transaction): Observable<any>{
     return this.httpClient.put<any>(url, transaction); //url and body
   }
 
-  postDatabaseTransaction(url:string, transaction:Transaction): Observable<any>{
+  postDatabaseTransaction(url:string, transaction): Observable<any>{
     return this.httpClient.post<any>(url, transaction);
   }
 

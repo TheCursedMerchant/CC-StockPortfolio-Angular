@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LocalStorageService } from '../../services/localstorage.service';
 import { TransactionServiceService } from '../../services/transaction-service.service';
 import { Transaction } from '../../models/transaction';
+import { User } from '../../models/user';
 // import { DatePipe } from '@angular/common';
 
 @Component({
@@ -68,33 +69,60 @@ export class UserPortfolioComponent implements OnInit {
       //else do PUT and make POST transaction that is "SOLD"
     for(let i=0; i < this.form.length; i++)
     {
+      let trans: {id:number, user:User, stockSymbol:string, stockName:string, 
+                  numShares:number, boughtFor:number, sellingFor:number, 
+                  date:Date, status:string};
       if(this.form[i]) //if truthy value
       {
         let sharesLeft = this.unsoldTransactions[i].shares - this.form[i];
-        let transaction:Transaction = this.unsoldTransactions[i];  //create sold tran
+
+        let transaction = this.unsoldTransactions[i];  //create sold tran
+
+        let trans = {
+          id: transaction.id,
+          user : transaction.user,
+          stockSymbol : transaction.symbol,
+          stockName : transaction.companyName,
+          numShares : transaction.shares,
+          boughtFor : transaction.boughtFor,
+          sellingFor : transaction.sellingFor,
+          date : transaction.date,
+          status : transaction.status
+        };
 
         if(sharesLeft > 0) //update trans
         {
-          this.unsoldTransactions[i].shares = sharesLeft; //updateTrans
-          let obj = this.unsoldTransactions[i];
-          this.transactionService.putDatabaseTransaction(this.url, this.unsoldTransactions[i]);
+          trans.numShares = sharesLeft; //updateTrans
+          this.transactionService.putDatabaseTransaction(this.url, trans).subscribe(
+            obj =>{
+              console.log(obj);
+            }
+          );
         }
 
-        else // delete trans
-          this.transactionService.deleteDatabaseTransaction(this.url+"/"+transaction.id);
-
-        console.log(this.unsoldTransactions.length);
-        console.log("i: "+i);
-        console.log("transaction: "+this.unsoldTransactions[0]);
-        // then create sold tran
-        transaction.sellingFor = this.soldTransactions[i].current;
-        transaction.shares = this.form[i];
-        transaction.status = "SOLD";
-        this.transactionService.postDatabaseTransaction(this.url, transaction);
+        else {// delete trans
+          // this.transactionService.deleteDatabaseTransaction(this.url+"/"+transaction.id);
+        }
+        let newSold ={
+          user : transaction.user,
+          stockSymbol : transaction.symbol,
+          stockName : transaction.companyName,
+          numShares : this.form[i],
+          boughtFor : transaction.boughtFor,
+          sellingFor : transaction.current,
+          date : transaction.date,
+          status : "SOLD"
+        };
+      
+        this.transactionService.postDatabaseTransaction(this.url, newSold).subscribe(
+          newSoldTransaction => {
+            console.log(newSoldTransaction);   
+          }
+        );
       }
     } // for
     //change the page back to this one...reload i guess. would be cool to add an alert that u changed those stocks
-    console.log("got here...now should change the page?");
+    window.location.reload();
   } //sell()
 
   fillPortfolioFromDB(): void{
