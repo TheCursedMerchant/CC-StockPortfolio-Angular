@@ -30,8 +30,6 @@ export class NewUserComponent implements OnInit {
     };
 
     let url = "http://localhost:8094/users";
-    console.log(newUser);
-
     this.userService.postUser(url, newUser);
   }
 
