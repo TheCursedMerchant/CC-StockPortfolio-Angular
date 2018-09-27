@@ -56,6 +56,7 @@ export class UserPortfolioComponent implements OnInit {
         {   //send an alert! and set flag
           validNumberToSell = false;
           //alert! number must be between 0 and this.unsoldTransactions[i].shares
+          
           //FIXME
         }    
       }

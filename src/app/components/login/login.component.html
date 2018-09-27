@@ -7,7 +7,8 @@
       <br/><br/>
       <label>Password: </label>
       <input type="password" [(ngModel)] = "passW"/><br/><br/>
-      <button value="Login" (click) = "sendCredentials()" class="btn btn-secondary">Login</button>
+      <button value="Login" onsubmit = "sendCredentials()" class="btn btn-secondary">Login</button>
+    
       <!-- <p> the name is {{user.name}}</p> -->
     </div>
   </div>
