@@ -32,7 +32,7 @@ export class StockCompanyComponent implements OnInit {
   }
 
   buyShares(){
-    let url = "http://localHost:8094/stockTransactions";
+    let url = "http://ccstockportfoliop2-env.hre7kq2up7.us-east-1.elasticbeanstalk.com/stockTransactions";
     let date = new Date();
     let newTransaction: Transaction = {
     id: undefined,
