@@ -23,7 +23,7 @@ export class UserPortfolioComponent implements OnInit {
   }
 
   //variables memebres
-  url:string = "http://localhost:8094/stockTransactions";
+  url:string = "http://ccstockportfoliop2-env.hre7kq2up7.us-east-1.elasticbeanstalk.com/stockTransactions";
   username = localStorage.getItem("username");
   unsoldTransactions:Transaction[] = [];
   form:number[] = [];
@@ -114,7 +114,7 @@ export class UserPortfolioComponent implements OnInit {
           numShares : this.form[i],
           boughtFor : transaction.boughtFor,
           sellingFor : transaction.current,
-          date : transaction.date,
+          date : new Date(),
           status : "SOLD"
         };
       
